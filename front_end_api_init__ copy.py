@@ -21,45 +21,54 @@ app = dash.Dash(__name__, assets_folder="assets")
 
 
 app.layout = html.Div([
-    html.H1("Enter your recipe here:",style={"text-align": "center","marginTop":79}),
+    html.H1("Enter your recipe",style={"text-align": "center","marginTop":200,"font-size":60}),
 
-    html.Div(dcc.Input(
-        id='recipelink',
-        placeholder='Links from food.com',
-        type='url',
-        style={})),
+    html.Div([
+          dcc.Input(
+          id='recipelink',
+          placeholder='Links from food.com',
+          type='url',
+          style={"border-radius":5, "width":600,"padding" : 12,"font-size":12}),
+     
+          html.Button('import', id='import-button', style={"text-align": "center", "width":60})],
+        
+          style={"text-align": "center"}),
 
-    html.Button('import', id='import-button',style={"text-align": "center"}),
+   
     html.Br(),
     html.Br(),
 
     html.H2("Enter the ingredients of your recipe here:",style={"text-align": "center"}),
 
-    html.Div( html.H5(["Ingredient " ,"Quantity       ","Unit       ","Status       "],style={"text-align": "center"})),
-
     html.Div([
-        dcc.Input(
-            id='ingredient',
-            placeholder='Insert ingredient name',
-            type='text',
-            value='potato'),
-        dcc.Input(
-            id='quantity',
-            placeholder='Insert ingredient quantity',
-            type='number',
-            value='3'),
-        dcc.Input(
-            id='unit',
-            placeholder='Insert ingredient unit',
-            type='text',
-            value='grams'),
-        dcc.Input(
-            id='status',
-            placeholder='Insert ingredient status',
-            type='text',
-            value='frozen'),]),
+        html.H5(["Ingredient " ,"Quantity       ","Unit       ","Status       "],style={"text-align": "center"}),
+        html.Div([
+          dcc.Input(
+               id='ingredient',
+               placeholder='Insert ingredient name',
+               type='text',
+               value='potato'),
+          dcc.Input(
+               id='quantity',
+               placeholder='Insert ingredient quantity',
+               type='number',
+               value='3'),
+          dcc.Input(
+               id='unit',
+               placeholder='Insert ingredient unit',
+               type='text',
+               value='grams'),
+          dcc.Input(
+               id='status',
+               placeholder='Insert ingredient status',
+               type='text',
+               value='frozen'),]),
+         html.Button('calculate', id='calculate-button', style={"text-align": "center"})], 
+         style={"text-align": "center"}),
 
-    html.Button('calculate', id='calculate-button', style={"text-align": "center"}),
+    
+
+    
 
     html.Br(),
     html.Br(),
