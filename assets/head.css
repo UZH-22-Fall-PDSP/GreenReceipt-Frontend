@@ -7,88 +7,52 @@
   <meta name="Generator" content="Cocoa HTML Writer">
   <meta name="CocoaVersion" content="2113.4">
   <style type="text/css">
-    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
-    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
-    span.s1 {font: 12.0px 'PingFang SC'}
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: #000000}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; color: #000000; -webkit-text-stroke: #000000; min-height: 14.0px}
+    span.s1 {font-kerning: none}
+    span.Apple-tab-span {white-space:pre}
   </style>
 </head>
 <body>
-<p class="p1">/* Search */</p>
-<p class="p2"><br></p>
-<p class="p1">box-sizing: border-box;</p>
-<p class="p2"><br></p>
-<p class="p1">position: absolute;</p>
-<p class="p1">width: 1035px;</p>
-<p class="p1">height: 84px;</p>
-<p class="p1">left: 202px;</p>
-<p class="p1">top: 293px;</p>
-<p class="p1">overflow-x: scroll;</p>
-<p class="p2"><br></p>
-<p class="p1">background: #FFFFFF;</p>
-<p class="p1">border: 1px solid #000000;</p>
-<p class="p1">box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);</p>
-<p class="p1">border-radius: 25px;</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1">/* Links from food.com */</p>
-<p class="p2"><br></p>
-<p class="p1">position: absolute;</p>
-<p class="p1">width: 459px;</p>
-<p class="p1">height: 41px;</p>
-<p class="p1">left: 114px;</p>
-<p class="p1">top: 17px;</p>
-<p class="p2"><br></p>
-<p class="p1">font-family: 'Inter';</p>
-<p class="p1">font-style: normal;</p>
-<p class="p1">font-weight: 700;</p>
-<p class="p1">font-size: 40px;</p>
-<p class="p1">line-height: 48px;</p>
-<p class="p2"><br></p>
-<p class="p1">color: #000000;</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1">/* search button */</p>
-<p class="p2"><br></p>
-<p class="p1">position: absolute;</p>
-<p class="p1">width: 149px;</p>
-<p class="p1">height: 54px;</p>
-<p class="p1">left: 864px;</p>
-<p class="p1">top: 15px;</p>
-<p class="p2"><br></p>
-<p class="p1">background: rgba(177, 207, 167, 0.46);</p>
-<p class="p1">border-radius: 10px;</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1">/* Import */</p>
-<p class="p2"><br></p>
-<p class="p1">position: absolute;</p>
-<p class="p1">width: 159px;</p>
-<p class="p1">height: 42px;</p>
-<p class="p1">left: -5px;</p>
-<p class="p1">top: 0px;</p>
-<p class="p2"><br></p>
-<p class="p1">font-family: 'Inter';</p>
-<p class="p1">font-style: normal;</p>
-<p class="p1">font-weight: 700;</p>
-<p class="p1">font-size: 40px;</p>
-<p class="p1">line-height: 48px;</p>
-<p class="p1">display: flex;</p>
-<p class="p1">align-items: center;</p>
-<p class="p1">text-align: center;</p>
-<p class="p2"><br></p>
-<p class="p1">color: #000000;</p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p2"><br></p>
-<p class="p1">/* search logo */</p>
-<p class="p2"><br></p>
-<p class="p1">position: absolute;</p>
-<p class="p1">width: 48px;</p>
-<p class="p1">height: 51px;</p>
-<p class="p1">left: 26px;</p>
-<p class="p1">top: 17px;</p>
-<p class="p2"><br></p>
-<p class="p1">background: url(<span class="s1">搜索</span>.png);</p>
+<p class="p1"><span class="s1">app-head{</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>box-sizing: border-box;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>width: 1035px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>height: 84px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>left: 202px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>top: 293px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>overflow-x: scroll;</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>background: #FFFFFF;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>border: 1px solid #000000;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>border-radius: 25px;</span></p>
+<p class="p1"><span class="s1"><br>
+}</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1">app-head. app-head—title{</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>position: absolute;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>width: 459px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>height: 41px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>left: 114px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>top: 17px;</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>font-family: 'Inter';</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>font-style: normal;<span class="Apple-tab-span">	</span></span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>font-weight: 700;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>font-size: 40px;</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>line-height: 48px;</span></p>
+<p class="p1"><span class="s1"><br>
+</span></p>
+<p class="p1"><span class="s1"><span class="Apple-tab-span">	</span>color: #000000;</span></p>
+<p class="p2"><span class="s1"></span><br></p>
+<p class="p1"><span class="s1"><br>
+}</span></p>
 </body>
 </html>
