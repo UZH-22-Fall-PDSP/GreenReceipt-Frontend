@@ -21,30 +21,21 @@ app = dash.Dash(__name__, assets_folder="assets")
 
 
 app.layout = html.Div([
-    html.H1("Enter your recipe here:"),
-
-    html.Div(
-        className="app-head",
-        children=[
-            html.Div('Plotly Dash', className="app-head--title")
-        ]
-    ),
+    html.H1("Enter your recipe here:",style={"text-align": "center","marginTop":79}),
 
     html.Div(dcc.Input(
         id='recipelink',
         placeholder='Links from food.com',
-        type='url')),
+        type='url',
+        style={})),
 
-    html.Button('import', id='import-button'),
-    html.Div(id='container-button-basic',
-             children='Enter a value and press submit'),
-
+    html.Button('import', id='import-button',style={"text-align": "center"}),
     html.Br(),
     html.Br(),
 
-    html.H2("Enter the ingredients of your recipe here:"),
+    html.H2("Enter the ingredients of your recipe here:",style={"text-align": "center"}),
 
-    html.Div( html.H5(["Ingredient    ","Quantity    ","Unit    ","Status    "])),
+    html.Div( html.H5(["Ingredient " ,"Quantity       ","Unit       ","Status       "],style={"text-align": "center"})),
 
     html.Div([
         dcc.Input(
@@ -68,11 +59,11 @@ app.layout = html.Div([
             type='text',
             value='frozen'),]),
 
-    html.Button('calculate', id='calculate-button'),
+    html.Button('calculate', id='calculate-button', style={"text-align": "center"}),
 
     html.Br(),
     html.Br(),
-    html.H3("CO2 emssion of your recipe:"),
+    html.H3("CO2 emssion of your recipe:", style={"text-align": "center"}),
     html.Br(),
     html.Br(),
     html.Div(id='result')
