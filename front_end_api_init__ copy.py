@@ -82,7 +82,7 @@ def update_result(num1, num2):
     return "The sum is: {}".format(response.json())
 
 if __name__ == '__main__':
-      app.run_server( port = 8085, debug = False)
+     app.run_server( host = '127.0.0.1',port = 8087, debug = True)
 
 
 #if __name__ == '__main__':
