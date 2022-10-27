@@ -12,11 +12,23 @@ import requests
 
 
 
-app = dash.Dash()
+app = dash.Dash(__name__, assets_folder="assets")
+
+# dash.register_page("home",  path='/', layout=html.Div('Home Page'))
+# dash.register_page("calculate", layout=html.Div('Calculate'))
+# dash.register_page("result", layout=html.Div('Result'))
+
 
 
 app.layout = html.Div([
     html.H1("Enter your recipe here:"),
+
+    html.Div(
+        className="app-head",
+        children=[
+            html.Div('Plotly Dash', className="app-head--title")
+        ]
+    ),
 
     html.Div(dcc.Input(
         id='recipelink',
@@ -32,7 +44,7 @@ app.layout = html.Div([
 
     html.H2("Enter the ingredients of your recipe here:"),
 
-    html.Div( html.H5(["Infredient    ","Quantity    ","Unit    ","Status    "])),
+    html.Div( html.H5(["Ingredient    ","Quantity    ","Unit    ","Status    "])),
 
     html.Div([
         dcc.Input(
@@ -43,7 +55,7 @@ app.layout = html.Div([
         dcc.Input(
             id='quantity',
             placeholder='Insert ingredient quantity',
-            type='int',
+            type='number',
             value='3'),
         dcc.Input(
             id='unit',
@@ -85,5 +97,3 @@ if __name__ == '__main__':
      app.run_server( host = '127.0.0.1',port = 8087, debug = True)
 
 
-#if __name__ == '__main__':
- #    app.run_server(host = '0.0.0.0', port = 8050, debug = True)
