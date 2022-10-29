@@ -21,14 +21,14 @@ app = dash.Dash(__name__, assets_folder="assets")
 
 
 app.layout = html.Div([
-    html.H1("Enter your recipe",style={"text-align": "center","marginTop":200,"font-size":60}),
+    html.H1("Enter your recipe",style={"text-align": "center","marginTop":250,"font-size":60}),
 
     html.Div([
           dcc.Input(
           id='recipelink',
           placeholder='Links from food.com',
           type='url',
-          style={"border-radius":5, "width":600,"padding" : 12,"font-size":12}),
+          style={"border-radius":5, "width":750,"padding" : 16,"font-size":12}),
      
           html.Button('import', id='import-button', style={"text-align": "center", "width":60})],
         
@@ -38,32 +38,90 @@ app.layout = html.Div([
     html.Br(),
     html.Br(),
 
-    html.H2("Enter the ingredients of your recipe here:",style={"text-align": "center"}),
-
     html.Div([
-        html.H5(["Ingredient " ,"Quantity       ","Unit       ","Status       "],style={"text-align": "center"}),
+        
         html.Div([
+          dcc.Markdown("Ingredient   Quantity     Unit      Status", style={"font-size":25}),
           dcc.Input(
-               id='ingredient',
+               id='ingredient1',
                placeholder='Insert ingredient name',
                type='text',
                value='potato'),
           dcc.Input(
-               id='quantity',
+               id='quantity1',
                placeholder='Insert ingredient quantity',
                type='number',
                value='3'),
           dcc.Input(
-               id='unit',
+               id='unit1',
                placeholder='Insert ingredient unit',
                type='text',
                value='grams'),
           dcc.Input(
-               id='status',
+               id='status1',
                placeholder='Insert ingredient status',
                type='text',
-               value='frozen'),]),
-         html.Button('calculate', id='calculate-button', style={"text-align": "center"})], 
+               value='frozen'),
+
+          html.Br(),
+          dcc.Input(
+               id='ingredient2',
+               placeholder='Ingredient name',
+               type='text'),
+          dcc.Input(
+               id='quantity2',
+               placeholder='Quantity',
+               type='number'),
+          dcc.Input(
+               id='unit2',
+               placeholder='Unit',
+               type='text'),
+          dcc.Input(
+               id='status2',
+               placeholder='Status',
+               type='text'),
+
+          html.Br(),
+          dcc.Input(
+               id='ingredient3',
+               placeholder='Ingredient name',
+               type='text'),
+          dcc.Input(
+               id='quantity3',
+               placeholder='Quantity',
+               type='number'),
+          dcc.Input(
+               id='unit3',
+               placeholder='Unit',
+               type='text'),
+          dcc.Input(
+               id='status3',
+               placeholder='Status',
+               type='text'),
+
+          html.Br(),
+          dcc.Input(
+               id='ingredient4',
+               placeholder='Ingredient name',
+               type='text'),
+          dcc.Input(
+               id='quantity4',
+               placeholder='Quantity',
+               type='number'),
+          dcc.Input(
+               id='unit4',
+               placeholder='Unit',
+               type='text'),
+          dcc.Input(
+               id='status4',
+               placeholder='Status',
+               type='text'),
+               ]),
+
+        html.Br(),
+        html.Br(),
+        html.Button('calculate', id='calculate-button', style={"text-align": "center", "width":350, "height" : 70, "border-radius":20, "font-size":35, "background": "#DBE9D7"})], 
+         
          style={"text-align": "center"}),
 
     
