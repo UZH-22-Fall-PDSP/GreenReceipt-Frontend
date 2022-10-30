@@ -1,3 +1,4 @@
+from multiprocessing.sharedctypes import Value
 import dash
 import pandas as pd
 import plotly.express as px
@@ -19,15 +20,15 @@ app = dash.Dash(__name__, assets_folder="assets")
 # dash.register_page("result", layout=html.Div('Result'))
 
 
-
+LINK_INPUT_PLACEHOLDE = 'Links from food.com'
 app.layout = html.Div([
     html.H1("Enter your recipe",style={"text-align": "center","marginTop":250,"font-size":60}),
-
+    
     html.Div([
           dcc.Input(
           id='recipelink',
-          placeholder='Links from food.com',
-          type='url',
+          placeholder=LINK_INPUT_PLACEHOLDE,
+          type='text',
           style={"border-radius":5, "width":750,"padding" : 16,"font-size":12}),
      
           html.Button('import', id='import-button', style={"text-align": "center", "width":60})],
@@ -120,7 +121,7 @@ app.layout = html.Div([
 
         html.Br(),
         html.Br(),
-        html.Button('calculate', id='calculate-button', style={"text-align": "center", "width":350, "height" : 70, "border-radius":20, "font-size":35, "background": "#DBE9D7"})], 
+        html.Button('calculate', id='calculate-button', n_clicks=0, style={"text-align": "center", "width":350, "height" : 70, "border-radius":20, "font-size":35, "background": "#DBE9D7"})], 
          
          style={"text-align": "center"}),
 
@@ -139,17 +140,38 @@ app.layout = html.Div([
 
 @app.callback(
     Output('result', 'children'),
-    [Input('input-num1', 'value'),
-     Input('input-num2', 'value')]
+    Input('import-button', 'n_clicks'),
+    State('recipelink', 'value')
 )
+def update_result(n_clicks, value):
+     LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
+     GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
-def update_result(num1, num2):
-    sum_arguments = {'x': num1, 'y': num2}
-    url ='http://35.233.118.56:5000/get_sum'
-    response = requests.get(url = url,  params=sum_arguments)
-    print(response.url)
-    print(response.json())
-    return "The sum is: {}".format(response.json())
+     recipeName = checkValidURL(value)
+
+     backendURL = LOCAL_TEST_URL
+     response = requests.get(url = backendURL,  params={'recipe': recipeName})
+     output = ''
+     if (response.status_code != 204 and
+          response.headers["content-type"].strip().startswith("application/json")):
+          try:
+               response_json = response.json()
+               output = "The recipe link you entered is not from Food.com"
+               if True:
+                         output = " {recipe} {totalco2} / serves".format(recipe = response_json['recipeName'], totalco2=response_json['totalCO2'])
+          except ValueError:
+               True
+     return output
+
+def checkValidURL(url):
+     EXPECTED_RECIPE_PAGE = 'food.com/recipe/'
+     if url != None:
+          url.index(EXPECTED_RECIPE_PAGE) # Exception will be occurred if there is no EXPECTED_RECIPE_PAGE
+          url = url.split('?')[0]
+          url = url.split('/')[-1]
+     else:
+          url = ''
+     return url
 
 if __name__ == '__main__':
      app.run_server( host = '127.0.0.1',port = 8087, debug = True)
