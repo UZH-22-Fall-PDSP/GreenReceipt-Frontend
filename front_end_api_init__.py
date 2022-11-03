@@ -2,9 +2,11 @@ from multiprocessing.sharedctypes import Value
 import dash
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 from dash import dash, html, dcc, Input, Output, State
 from dash.dependencies import Input, Output
 import requests
+
 
 #picture link from github 
 tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
@@ -134,8 +136,11 @@ app.layout = html.Div([
     html.Br(),
     html.H3("CO2 emssion of your recipe:", style={"text-align": "center","font-size":40}),
     html.Br(),
+
     html.Div(id='result'),
+    #dcc.Graph(id='result',figure=fig)
     html.Br(),
+
     html.H3("Recipe ingredients break down:",style={"text-align": "center","font-size":30}),
     html.Br(),
     html.Img(src=tree)
@@ -144,6 +149,7 @@ app.layout = html.Div([
 
 @app.callback(
     Output('result', 'children'),
+    #Output('result','figure'),
     Input('import-button', 'n_clicks'),
     State('recipelink', 'value')
 )
@@ -162,12 +168,26 @@ def update_result(n_clicks, value):
                response_json = response.json()
                output = "The recipe link you entered is not from Food.com"
                if True:
-                         output = " {recipe} {totalco2} / 1 serve\n{ingrdlist}".format(recipe = response_json['recipeName']
+                         #output = " {recipe} {totalco2} / 1 serve\n{ingrdlist}".format(recipe = response_json['recipeName']
                                                                                      , totalco2=response_json['totalCO2']
                                                                                      , ingrdlist=response_json['ingrdCO2List'])
+                         df = response_json['ingrdCO2List']，
+                         emission = df.sort_co2(by=['co2'],accending = False)
+                         visual  = emission.iloc[0:5,]
+                         output = visual
+
+                         #output= px.bar(visual, )
+                         #output = go.figure()
+                         #fig.add_trace(go.Bar(y=[{receipe}],x=[],name='foodname',orientation='h'))
+                         #fog.add_trace(),
+                         #fig.update_layout(barmode='stack')
+                         #fig.show()
+                        
+
           except ValueError:
                True
      return output
+
 
 def checkValidURL(url):
      EXPECTED_RECIPE_PAGE = 'food.com/recipe/'
