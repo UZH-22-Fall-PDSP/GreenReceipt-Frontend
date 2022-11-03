@@ -142,7 +142,7 @@ app.layout = html.Div([
     html.Br(),
 
     html.H3("Recipe ingredients break down:",style={"text-align": "center","font-size":30}),
-    html.Div(id='fig'),
+    html.Div(dcc.Graph(id='sales_line')),
     html.Br(),
     html.Img(src=tree)
     ])
@@ -188,7 +188,7 @@ def update_result(n_clicks, value):
 
           except ValueError:
                True
-     return [output, fig]
+     return output, fig
 
 
 def checkValidURL(url):
