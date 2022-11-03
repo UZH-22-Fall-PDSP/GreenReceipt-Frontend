@@ -6,8 +6,9 @@ from dash import dash, html, dcc, Input, Output, State
 from dash.dependencies import Input, Output
 import requests
 
-#picture link from github 
-tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
+
+#image link
+home_img='https://blog.giki.earth/wp-content/uploads/2020/02/sweet-potato-tomato-stew-1.jpg'
 #external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
 #app = Dash(__name__, external_stylesheets=external_stylesheets)
@@ -22,17 +23,21 @@ app = dash.Dash(__name__, assets_folder="assets")
 
 
 LINK_INPUT_PLACEHOLDE = 'Links from food.com'
-app.layout = html.Div([
-    html.H1("Enter your recipe",style={"text-align": "center","marginTop":250,
-    "font-size":60}),
+app.layout = html.Div(style={
+    'background-image': 'url(home_img)'
+    },children = [
+    html.H1("Enter your recipe",style={"text-align": "center","marginTop":250,"font-size":60}),
+    html.Img(src=home_img),
     html.Div([
           dcc.Input(
           id='recipelink',
           placeholder=LINK_INPUT_PLACEHOLDE,
           type='text',
           style={"border-radius":5, "width":750,"padding" : 16,"font-size":12}),
-          html.Button('import', id='import-button', style={"text-align": "center", "width":60,'height':30})],
-          style={"text-align": "center","border-radius":20}),
+     
+          html.Button('import', id='import-button', style={"text-align": "center", "width":60})],
+        
+          style={"text-align": "center"}),
 
    
     html.Br(),
@@ -42,9 +47,9 @@ app.layout = html.Div([
         
         html.Div([
           html.H2("Ingredient", style={"font-size":22,'margin-left':'20px','margin-right':'60px','display':'inline-block'}),
-          html.H2("Quantity", style={"font-size":22,'margin-right':'30px','margin-right':'80px','display':'inline-block'}),
-          html.H2("Unit", style={"font-size":22,'margin-right':'80px','display':'inline-block'}),
-          html.H2("Status", style={"font-size":22,'margin-left':'30px','margin-right':'50px','display':'inline-block'}),
+          html.H3("Quantity", style={"font-size":22,'margin-right':'30px','margin-right':'80px','display':'inline-block'}),
+          html.H4("Unit", style={"font-size":22,'margin-right':'80px','display':'inline-block'}),
+          html.H5("Status", style={"font-size":22,'margin-left':'30px','margin-right':'50px','display':'inline-block'}),
           html.Br(),
           dcc.Input(
                id='ingredient1',
@@ -124,62 +129,16 @@ app.layout = html.Div([
 
         html.Br(),
         html.Br(),
-        html.Button('Calculate', id='calculate-button', n_clicks=0, style={"text-align": "center", "width":350, "height" : 70, "border-radius":20, "font-size":35, "background": "#DBE9D7"})], 
+        html.Button('calculate', id='calculate-button', n_clicks=0, style={"text-align": "center", "width":350, "height" : 70, "border-radius":20, "font-size":35, "background": "#DBE9D7"})], 
          
          style={"text-align": "center"}),
 
     
-    #output page 
-    html.Br(),
-    html.Br(),
-    html.H3("CO2 emssion of your recipe:", style={"text-align": "center","font-size":40}),
-    html.Br(),
-    html.Div(id='result'),
-    html.Br(),
-    html.H3("Recipe ingredients break down:",style={"text-align": "center","font-size":30}),
-    html.Br(),
-    html.Img(src=tree)
+
     ])
 
 
-@app.callback(
-    Output('result', 'children'),
-    Input('import-button', 'n_clicks'),
-    State('recipelink', 'value')
-)
-def update_result(n_clicks, value):
-     LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
-     GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
-
-     recipeName = checkValidURL(value)
-
-     backendURL = LOCAL_TEST_URL
-     response = requests.get(url = backendURL,  params={'recipe': recipeName})
-     output = ''
-     if (response.status_code != 204 and
-          response.headers["content-type"].strip().startswith("application/json")):
-          try:
-               response_json = response.json()
-               output = "The recipe link you entered is not from Food.com"
-               if True:
-                         output = " {recipe} {totalco2} / 1 serve\n{ingrdlist}".format(recipe = response_json['recipeName']
-                                                                                     , totalco2=response_json['totalCO2']
-                                                                                     , ingrdlist=response_json['ingrdCO2List'])
-          except ValueError:
-               True
-     return output
-
-def checkValidURL(url):
-     EXPECTED_RECIPE_PAGE = 'food.com/recipe/'
-     if url != None:
-          url.index(EXPECTED_RECIPE_PAGE) # Exception will be occurred if there is no EXPECTED_RECIPE_PAGE
-          url = url.split('?')[0]
-          url = url.split('/')[-1]
-     else:
-          url = ''
-     return url
-
 if __name__ == '__main__':
-     app.run_server( host = '127.0.0.1',port = 8087, debug = True)
+     app.run_server( host = '127.0.0.1',port = 8088, debug = True)
 
 
