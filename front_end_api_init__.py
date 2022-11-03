@@ -158,7 +158,9 @@ def update_result(n_clicks, value):
                response_json = response.json()
                output = "The recipe link you entered is not from Food.com"
                if True:
-                         output = " {recipe} {totalco2} / serves".format(recipe = response_json['recipeName'], totalco2=response_json['totalCO2'])
+                         output = " {recipe} {totalco2} / 1 serve\n{ingrdlist}".format(recipe = response_json['recipeName']
+                                                                                     , totalco2=response_json['totalCO2']
+                                                                                     , ingrdlist=response_json['ingrdCO2List'])
           except ValueError:
                True
      return output
