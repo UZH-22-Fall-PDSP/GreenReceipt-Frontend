@@ -1,7 +1,13 @@
-pip install requests
-pip install dash
+# %%
+pip install requests 
 
+# %%
+pip install numpy
 
+# %%
+pip install pandas
+
+# %%
 import dash
 from dash import dash, html, dcc
 from dash.dependencies import Input, Output
@@ -11,18 +17,26 @@ app = dash.Dash()
 
 
 app.layout = html.Div([
-    html.H1("Simple input example"),
+    html.H1("Enter your recipe here:"),
     dcc.Input(
-        id='input-num1',
-        placeholder='Insert num1 value',
-        type='number',
-        value='4',
+        id='recipelink',
+        placeholder='Insert website value',
+        type='text',
+    ),
+    html.Br(),
+    html.Br(),
+    html.H2("Enter the ingredients of your recipe here:"),
+    dcc.Input(
+        id='ingredientname',
+        placeholder='Insert ingredient name',
+        type='text',
+        value='potato',
     ),
     dcc.Input(
-        id='input-num2',
-        placeholder='Insert num2 value',
-        type='number',
-        value='3',
+        id='quantity',
+        placeholder='Insert ingredient quantity',
+        type='int',
+        value='2',
     ),
     html.Br(),
     html.Br(),
@@ -45,4 +59,9 @@ def update_result(num1, num2):
     return "The sum is: {}".format(response.json())
 
 if __name__ == '__main__':
-     app.run_server(host = '0.0.0.0', port = 8050, debug = False)
+     app.run_server(debug=False, port=8057)
+
+# %%
+
+
+
