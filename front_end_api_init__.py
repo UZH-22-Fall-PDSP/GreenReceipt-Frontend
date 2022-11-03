@@ -41,7 +41,7 @@ app.layout = html.Div([
     html.Div([
         
         html.Div([
-          html.H2("Ingredient", style={"font-size":22,'margin-left':'20px','margin-right':'60px','display':'inline-block'}),
+          html.H2("Ingredients", style={"font-size":22,'margin-left':'20px','margin-right':'60px','display':'inline-block'}),
           html.H2("Quantity", style={"font-size":22,'margin-right':'30px','margin-right':'80px','display':'inline-block'}),
           html.H2("Unit", style={"font-size":22,'margin-right':'80px','display':'inline-block'}),
           html.H2("Status", style={"font-size":22,'margin-left':'30px','margin-right':'50px','display':'inline-block'}),
