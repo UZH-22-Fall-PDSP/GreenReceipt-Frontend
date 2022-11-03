@@ -142,14 +142,15 @@ app.layout = html.Div([
     html.Br(),
 
     html.H3("Recipe ingredients break down:",style={"text-align": "center","font-size":30}),
+    html.Div(id='fig'),
     html.Br(),
     html.Img(src=tree)
     ])
 
 
 @app.callback(
+    Output('fig','figure'),
     Output('result', 'children'),
-    #Output('result','figure'),
     Input('import-button', 'n_clicks'),
     State('recipelink', 'value')
 )
@@ -169,12 +170,13 @@ def update_result(n_clicks, value):
                output = "The recipe link you entered is not from Food.com"
                if True:
                          #output = " {recipe} {totalco2} / 1 serve\n{ingrdlist}".format(recipe = response_json['recipeName']
-                                                                                     , totalco2=response_json['totalCO2']
-                                                                                     , ingrdlist=response_json['ingrdCO2List'])
-                         df = response_json['ingrdCO2List']，
-                         emission = df.sort_co2(by=['co2'],accending = False)
-                         visual  = emission.iloc[0:5,]
-                         output = visual
+                                                                                     # , totalco2=response_json['totalCO2']
+                                                                                     # , ingrdlist=response_json['ingrdCO2List'])
+                         Ingrddata=response_json()
+                         output = Ingrddata['totalCO2']
+                         BDdata= pd.DataFrame(Ingrddata['ingrdCO2List'])
+                         fig = px.bar(BDdata, x="Ingredient", color="Ingredient",orientation='h',height=160,labels=None)
+                         fig.show()
 
                          #output= px.bar(visual, )
                          #output = go.figure()
@@ -186,7 +188,7 @@ def update_result(n_clicks, value):
 
           except ValueError:
                True
-     return output
+     return [output, fig]
 
 
 def checkValidURL(url):
