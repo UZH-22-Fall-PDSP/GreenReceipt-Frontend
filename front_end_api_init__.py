@@ -157,11 +157,11 @@ def update_result(n_clicks, value):
           try:
                response_json = response.json()
                recipeName, totalco2, ingrdList = parsingRecipeCO2(response_json)
-               title = 'Total CO2 of "' + recipeName + '" is ' + str(totalco2)
+               title = 'Total CO2 of "' + recipeName + '" is ' + str(totalco2) + ' / 1 serve'
                BDdata= pd.DataFrame(ingrdList).sort_values(by=['co2'], ascending=False)
                ingrd_details_fig = px.bar(BDdata, x='ingredient', y='co2',text_auto=True,
                                              title=title)
-               ingrd_details_fig.update_layout(title_x=0.5,width=20,height=20)
+               ingrd_details_fig.update_layout(title_x=0.5)
 
           except ValueError:
                True
