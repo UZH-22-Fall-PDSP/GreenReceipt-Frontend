@@ -6,7 +6,7 @@ import plotly.graph_objects as go
 from dash import dash, html, dcc, Input, Output, State
 from dash.dependencies import Input, Output
 import requests
-
+import json
 
 #picture link from github 
 tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
@@ -22,173 +22,151 @@ app = dash.Dash(__name__, assets_folder="assets")
 # dash.register_page("calculate", layout=html.Div('Calculate'))
 # dash.register_page("result", layout=html.Div('Result'))
 
+app.layout = html.Div([        
+                         ## [COMPONENET] URL RECIPE
+                         html.Div([
 
-LINK_INPUT_PLACEHOLDE = 'Links from food.com'
-app.layout = html.Div([
-    html.H1("Enter your recipe",style={"text-align": "center","marginTop":250,
-    "font-size":60}),
-    html.Div([
-          dcc.Input(
-          id='recipelink',
-          placeholder=LINK_INPUT_PLACEHOLDE,
-          type='text',
-          style={"border-radius":5, "width":750,"padding" : 16,"font-size":12}),
-          html.Button('import', id='import-button', style={"text-align": "center", "width":60,'height':30})],
-          style={"text-align": "center","border-radius":20}),
+                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":100,"marginBottom":20, "font-size":60}),
 
-   
-    html.Br(),
-    html.Br(),
+                                   ## [SUB-COMPONENT] URL RECIPE - INPUT
+                                   dcc.Input(id='url_recipe_input',
+                                             placeholder='Input your Recipe URL from food.com',
+                                             type='text',
+                                             style={"border-radius":5, "width":650, "padding" : 10,"font-size":20}),
 
-    html.Div([
-        
-        html.Div([
-          html.H2("Ingredients", style={"font-size":22,'margin-left':'20px','margin-right':'60px','display':'inline-block'}),
-          html.H2("Quantity", style={"font-size":22,'margin-right':'30px','margin-right':'80px','display':'inline-block'}),
-          html.H2("Unit", style={"font-size":22,'margin-right':'80px','display':'inline-block'}),
-          html.H2("Status", style={"font-size":22,'margin-left':'30px','margin-right':'50px','display':'inline-block'}),
-          html.Br(),
-          dcc.Input(
-               id='ingredient1',
-               placeholder='Insert ingredient name',
-               type='text',
-               value='potato'),
-          dcc.Input(
-               id='quantity1',
-               placeholder='Insert ingredient quantity',
-               type='number',
-               value='3'),
-          dcc.Input(
-               id='unit1',
-               placeholder='Insert ingredient unit',
-               type='text',
-               value='grams'),
-          dcc.Input(
-               id='status1',
-               placeholder='Insert ingredient status',
-               type='text',
-               value='frozen'),
+                                   html.Br(), html.Br(),
 
-          html.Br(),
-          dcc.Input(
-               id='ingredient2',
-               placeholder='Ingredient name',
-               type='text'),
-          dcc.Input(
-               id='quantity2',
-               placeholder='Quantity',
-               type='number'),
-          dcc.Input(
-               id='unit2',
-               placeholder='Unit',
-               type='text'),
-          dcc.Input(
-               id='status2',
-               placeholder='Status',
-               type='text'),
+                                   ## [SUB-COMPONENT] URL RECIPE - CALCULATION BUTTON
+                                   html.Button('CALCULATION', id='url_recipe_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
+                                   ], style={"text-align": "center", "border-radius":20}),
 
-          html.Br(),
-          dcc.Input(
-               id='ingredient3',
-               placeholder='Ingredient name',
-               type='text'),
-          dcc.Input(
-               id='quantity3',
-               placeholder='Quantity',
-               type='number'),
-          dcc.Input(
-               id='unit3',
-               placeholder='Unit',
-               type='text'),
-          dcc.Input(
-               id='status3',
-               placeholder='Status',
-               type='text'),
+                         
+                         html.Br(), html.Br(),
 
-          html.Br(),
-          dcc.Input(
-               id='ingredient4',
-               placeholder='Ingredient name',
-               type='text'),
-          dcc.Input(
-               id='quantity4',
-               placeholder='Quantity',
-               type='number'),
-          dcc.Input(
-               id='unit4',
-               placeholder='Unit',
-               type='text'),
-          dcc.Input(
-               id='status4',
-               placeholder='Status',
-               type='text'),
-               ]),
+                         ## [COMPONENET] CO2 CALCULATION RESULT
+                         html.Div([
+                                   ## [SUB-COMPONENT] CO2 CALCULATION RESULT - TOTAL OUTPUT
+                                   html.H3("Your Recipe's CO2 Emissions", style={"text-align": "center", 'margin':20, "font-size":40}),
+                                   ## [SUB-COMPONENT] CO2 CALCULATION RESULT - INGREDIENTS DETAIL OUTPUT
+                                   dcc.Graph(id='ingrd_detail_graph'),
+                                   html.Br()
+                                   ], style={"text-align": "center","font-size":30}),
 
-        html.Br(),
-        html.Br(),
-        html.Button('Calculate', id='calculate-button', n_clicks=0, style={"text-align": "center", "width":350, "height" : 70, "border-radius":20, "font-size":35, "background": "#DBE9D7"})], 
-         
-         style={"text-align": "center"}),
+                         html.Br(), html.Br(),
 
-    
-    #output page 
-    html.Br(),
-    html.Br(),
-    html.H3("CO2 emssion of your recipe:", style={"text-align": "center","font-size":40}),
-    html.Br(),
+                         ## [COMPONENET] MANUAL INGREDIENTS
+                         html.Div([
+                                   ## [SUB-COMPONENT] MANUAL INGREDIENTS - INPUT (5x3)
+                                   html.Div([
+                                        html.H2("Ingredients", style={"font-size":22,'margin-left':'20px','margin-right':'60px','display':'inline-block'}),
+                                        html.H2("Quantity", style={"font-size":22,'margin-right':'30px','margin-right':'80px','display':'inline-block'}),
+                                        html.H2("Unit", style={"font-size":22,'margin-right':'80px','display':'inline-block'}),
+                                        html.Br(),
+                                        dcc.Input(
+                                             id='ingredient1',
+                                             placeholder='Insert ingredient name',
+                                             type='text',
+                                             value='potato'),
+                                        dcc.Input(
+                                             id='quantity1',
+                                             placeholder='Insert ingredient quantity',
+                                             type='number',
+                                             value='3'),
+                                        dcc.Input(
+                                             id='unit1',
+                                             placeholder='Insert ingredient unit',
+                                             type='text',
+                                             value='grams'),
 
-    html.Div(id='result'),
-    #dcc.Graph(id='result',figure=fig)
-    html.Br(),
+                                        html.Br(),
+                                        dcc.Input(
+                                             id='ingredient2',
+                                             placeholder='Ingredient name',
+                                             type='text'),
+                                        dcc.Input(
+                                             id='quantity2',
+                                             placeholder='Quantity',
+                                             type='number'),
+                                        dcc.Input(
+                                             id='unit2',
+                                             placeholder='Unit',
+                                             type='text'),
 
-    html.H3("Recipe ingredients break down:",style={"text-align": "center","font-size":30}),
-    html.Div(dcc.Graph(id='sales_line')),
-    html.Br(),
-    html.Img(src=tree)
-    ])
+                                        html.Br(),
+                                        dcc.Input(
+                                             id='ingredient3',
+                                             placeholder='Ingredient name',
+                                             type='text'),
+                                        dcc.Input(
+                                             id='quantity3',
+                                             placeholder='Quantity',
+                                             type='number'),
+                                        dcc.Input(
+                                             id='unit3',
+                                             placeholder='Unit',
+                                             type='text'),
 
+                                        html.Br(),
+                                        dcc.Input(
+                                             id='ingredient4',
+                                             placeholder='Ingredient name',
+                                             type='text'),
+                                        dcc.Input(
+                                             id='quantity4',
+                                             placeholder='Quantity',
+                                             type='number'),
+                                        dcc.Input(
+                                             id='unit4',
+                                             placeholder='Unit',
+                                             type='text'),
+                                             ]),
+                                   
+                                   html.Br(), html.Br(),
+                              
+                                   ## [SUB-COMPONENT] MANUAL INGREDIENTS - CALCULATION BUTTON
+                                   html.Button('CALCULATION', id='manual_ingrd_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
+                                   ], style={"text-align": "center"}),
+
+                         html.Br(), html.Br(),
+
+                         html.Img(src=tree)
+                    ])
+
+
+
+LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
+GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
 @app.callback(
-    Output('fig','figure'),
-    Output('result', 'children'),
-    Input('import-button', 'n_clicks'),
-    State('recipelink', 'value')
+     Output('ingrd_detail_graph','figure'),
+     Input('url_recipe_cal', 'n_clicks'),
+     State('url_recipe_input', 'value')
 )
 def update_result(n_clicks, value):
-     LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
-     GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
      recipeName = checkValidURL(value)
 
      backendURL = LOCAL_TEST_URL
      response = requests.get(url = backendURL,  params={'recipe': recipeName})
-     output = ''
+
+     totalco2 = ''
+     ingrd_details_fig = px.bar()
+
      if (response.status_code != 204 and
           response.headers["content-type"].strip().startswith("application/json")):
           try:
                response_json = response.json()
-               output = "The recipe link you entered is not from Food.com"
-               if True:
-                         #output = " {recipe} {totalco2} / 1 serve\n{ingrdlist}".format(recipe = response_json['recipeName']
-                                                                                     # , totalco2=response_json['totalCO2']
-                                                                                     # , ingrdlist=response_json['ingrdCO2List'])
-                         Ingrddata=response_json()
-                         output = Ingrddata['totalCO2']
-                         BDdata= pd.DataFrame(Ingrddata['ingrdCO2List'])
-                         fig = px.bar(BDdata, x="Ingredient", color="Ingredient",orientation='h',height=160,labels=None)
-                         fig.show()
-
-                         #output= px.bar(visual, )
-                         #output = go.figure()
-                         #fig.add_trace(go.Bar(y=[{receipe}],x=[],name='foodname',orientation='h'))
-                         #fog.add_trace(),
-                         #fig.update_layout(barmode='stack')
-                         #fig.show()
-                        
+               recipeName, totalco2, ingrdList = parsingRecipeCO2(response_json)
+               title = 'Total CO2 of "' + recipeName + '" is ' + str(totalco2)
+               BDdata= pd.DataFrame(ingrdList).sort_values(by=['co2'], ascending=False)
+               ingrd_details_fig = px.bar(BDdata, x='ingredient', y='co2',text_auto=True,
+                                             title=title)
+               ingrd_details_fig.update_layout(title_x=0.5,width=20,height=20)
 
           except ValueError:
                True
-     return output, fig
+
+     return ingrd_details_fig
 
 
 def checkValidURL(url):
@@ -200,6 +178,19 @@ def checkValidURL(url):
      else:
           url = ''
      return url
+
+def parsingRecipeCO2(response_json):
+     recipeName = response_json['recipeName']
+     totalco2 = response_json['totalCO2']
+     ingrdList = response_json['ingrdCO2List']
+     ingrd = []
+     co2 = []
+     for i in ingrdList:
+          ingrd.append(i['ingredient'])
+          co2.append(i['co2'])
+     ingrdData = {'ingredient':ingrd,'co2':co2}
+     return recipeName, totalco2, ingrdData
+
 
 if __name__ == '__main__':
      app.run_server( host = '127.0.0.1',port = 8087, debug = True)
