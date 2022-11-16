@@ -3,12 +3,12 @@ from dash import html, dcc
 import dash_bootstrap_components as dbc
 # dbc = ash_bootstrap_components
 
-# styling the sidebar
-SIDEBAR_STYLE = {
+# styling the navigation bar 
+Navigation_Style = {
     "position": "fixed",
     "top": 0,
     "left": 0,
-    "bottom": 0,
+    "bottom": 600,
     "width": "5 rem",
     "height":"5 rem",
     "padding":"1rem 0rem",
@@ -16,31 +16,38 @@ SIDEBAR_STYLE = {
 }
 
 
-sidebar = html.Div(
+navigation = html.Div(
     [
-        html.H2("Navigation", className="display-4"),
-        html.Hr(),
+        html.H2("Navigation", className="display-3"),
+        html.Br(),
         html.P(
             "Green Recipe", className="lead"
         ),
         dbc.Nav(
             [
                 dbc.NavLink("Home", href="/", active="exact"),
-                dbc.NavLink("Ingredient Calculator", href="/page-1", active="exact"),
                 # dbc.NavLink("Page 2", href="/page-2", active="exact"),
             ],
-            vertical=True,
+            vertical=False,
+            pills=True,
+        ),           
+        dbc.Nav(
+            [  
+                dbc.NavLink("Ingredient Calculator", href="/page-1", active="exact"),
+                # dbc.NavLink("Page 2", href="/page-2", active="exact"),
+            ],        
+            vertical=False,
             pills=True,
         ),
     ],
-    style=SIDEBAR_STYLE,
+    style=Navigation_Style,
 )
 
 app = dash.Dash(__name__, use_pages=True)
 
 app.layout = html.Div([
     dcc.Location(id="url"),
-    sidebar,
+    navigation,
     dash.page_container
 ])
 
