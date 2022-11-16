@@ -16,5 +16,5 @@ layout = html.Div([
     html.Button('START', id='Home_startbutton', 
                  n_clicks=0, style={"text-align": "center", 
                  "width":250, "height" : 70, "border-radius":20, 
-                 "font-size":35, "background": "#DBE9D7",'marginLeft': 550})])
+                 "font-size":35, "background": "#DBE9D7",'marginLeft': 550})],style={"background-image": "url(assets/Background.png)","background-size": "cover","-webkit-background-size": "cover","-o-background-size": "cover","background-position":" center 0"})
 

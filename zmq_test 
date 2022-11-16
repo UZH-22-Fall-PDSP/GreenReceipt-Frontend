@@ -15,8 +15,14 @@ app = dash.Dash(__name__, assets_folder="assets")
 # dash.register_page("calculate", layout=html.Div('Calculate'))
 # dash.register_page("result", layout=html.Div('Result'))
 
+background = "assets/Background.png"
 
-app.layout = html.Div([html.Br(), html.Br()],style={"background-image": "assets/Background (1).jpg","background-size": "cover"})
+app.layout = html.Div(
+    [
+    html.H2("Ingredients")
+    ],
+    style={"background-image": "url(assets/Background.png)","background-size": "cover","width":"100%","height":"100%",
+    "-webkit-background-size": "cover","-o-background-size": "cover","background-position":" center 0"})
 
 
 

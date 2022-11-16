@@ -125,9 +125,8 @@ app.layout = html.Div([
 
                          html.Br(), html.Br(),
 
-                         html.Img(src=tree, style={"background-repeat":"no-repeat", "background-attachment":"fixed","background-size":"100%"}),
-                         html.Img(src=background, style={"width":"300px"} )
-                    ], style={"background-image": "assets/Background (1).jpg","background-size": "cover"})
+                         html.Img(src=tree,style = {"width":"300px"})
+                    ],  style={"background-image": "url(assets/Background.png)","background-size": "cover","-webkit-background-size": "cover","-o-background-size": "cover","background-position":" center 0"})
 
 
 
