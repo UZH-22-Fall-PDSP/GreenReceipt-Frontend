@@ -8,14 +8,10 @@ from dash.dependencies import Input, Output
 import requests
 import json
 
+
 #picture link from github 
-tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
-#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
-
-#app = Dash(__name__, external_stylesheets=external_stylesheets)
-
-
-
+tree  = "assets/tree.png"
+background = "assets/Background (1).jpg"
 app = dash.Dash(__name__, assets_folder="assets")
 
 # dash.register_page("home",  path='/', layout=html.Div('Home Page'))
@@ -129,8 +125,9 @@ app.layout = html.Div([
 
                          html.Br(), html.Br(),
 
-                         html.Img(src=tree)
-                    ])
+                         html.Img(src=tree, style={"background-repeat":"no-repeat", "background-attachment":"fixed","background-size":"100%"}),
+                         html.Img(src=background, style={"width":"300px"} )
+                    ], style={"background-image": "assets/Background (1).jpg","background-size": "cover"})
 
 
 
