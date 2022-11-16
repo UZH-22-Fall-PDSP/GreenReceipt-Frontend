@@ -3,7 +3,7 @@ import dash
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from dash import dash, html, dcc, Input, Output, State
+from dash import dash, html, dcc, Input, Output, State, callback
 from dash.dependencies import Input, Output
 import requests
 import json
@@ -17,7 +17,7 @@ tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/asset
 #app = Dash(__name__, external_stylesheets=external_stylesheets)
 
 # app = dash.Dash(__name__, assets_folder="assets")
-app = register_page(__name__)
+register_page(__name__)
 
 
 # dash.register_page("home",  path='/', layout=html.Div('Home Page'))
