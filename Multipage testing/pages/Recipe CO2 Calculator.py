@@ -9,9 +9,11 @@ import requests
 import json
 from dash_labs.plugins.pages import register_page
 
-register_page(__name__)
+# register_page(__name__)
+app = dash.Dash(__name__, assets_folder="assets")
 
-layout = html.Div([        
+# layout = html.Div([  
+app.layout = html.Div([  
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
