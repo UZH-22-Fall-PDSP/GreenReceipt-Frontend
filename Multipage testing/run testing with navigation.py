@@ -4,71 +4,38 @@ import dash_bootstrap_components as dbc
 # dbc = ash_bootstrap_components
 
 
+app = dash.Dash(__name__, use_pages=True)
 
-
-# nav_content = [
-#     dbc.NavLink("Home", href="/", active=True),
-#     #dbc.NavItem(dbc.NavLink("Recipe CO2 Calculator", href="/Recipe_CO2_Calculator")),
+nav_content = [
+    dbc.NavItem([dbc.NavLink("Home", href="/", active=True), 
+                dbc.NavLink("RecipeCO2Calculator", href="/RecipeCO2Calculator")]),
 #     dbc.NavLink("Ingredient Searching page", href="/IngredientCalculator"),
 #     dbc.NavLink("Design Recipe", href="/DesignRecipe"),
 #     dbc.NavLink("Report", href="/IngredientsReport"),
 #     dbc.NavLink("Button", id="button-link", n_clicks=0)
-# ]
+]
 
 # nav_content = [
 #     dbc.NavItem(dbc.NavLink("Home", href="/", active=True)),
-#     #dbc.NavItem(dbc.NavLink("Recipe CO2 Calculator", href="/Recipe_CO2_Calculator")),
+#     #dbc.NavItem(dbc.NavLink("Recipe CO2 Calculator", href="/RecipeCO2Calculator")),
 #     dbc.NavItem(dbc.NavLink("Ingredient Searching page", href="/Ingredient_searching")),
 #     dbc.NavItem(dbc.NavLink("Design Recipe", href="/DesignRecipe")),
 #     dbc.NavItem(dbc.NavLink("Report", href="/IngredientReport"))
 # ]
 
-# nav1 = dbc.Nav(nav_content, pills = True, fill = True, justified=True)
-# navs = html.Div([nav1, html.Hr()])
+nav1 = dbc.Nav(nav_content, pills = True, fill = True, justified=True, vertical = False, style = ({'margin-right':'30px'}))
+navs = html.Div([nav1, html.Hr()])
 
 
-
-app = dash.Dash(__name__,use_pages= True)
-
-#styling the navigation bar 
-sidebar = dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in dash.page_registry.values()
-            ],
-            vertical=False,
-            pills=True,
-            className="bg-light",
+## Page Layout 
+app.layout = html.Div(
+    [
+        # main app framework
+        navs,
+        # content of each page
+        dash.page_container
+    ]
 )
-
-app.layout = dbc.Container([
-  
-
-    html.Hr(),
-
-    dbc.Row(
-        [
-            dbc.Col(
-                [sidebar
-                ], xs=4, sm=4, md=2, lg=2, xl=2, xxl=2),
-            dash.page_container
-], fluid=True) ])
-
-# Page Layout 
-# app.layout = html.Div(
-#     [
-#         # main app framework
-#         navs,
-#         # content of each page
-
-#     ]
-# )
 
 # @app.callback([Output("page-content", "children"),
 #                Input('url', 'pathname')])

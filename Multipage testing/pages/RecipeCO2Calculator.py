@@ -7,13 +7,13 @@ from dash import dash, html, dcc, Input, Output, State
 from dash.dependencies import Input, Output
 import requests
 import json
-# from dash_labs.plugins.pages import register_page
+from dash_labs.plugins.pages import register_page
 
-# register_page(__name__)
-app = dash.Dash(__name__, assets_folder="assets")
+register_page(__name__)
+#app = dash.Dash(__name__, assets_folder="assets")
 
-# layout = html.Div([  
-app.layout = html.Div([  
+layout = html.Div([  
+#app.layout = html.Div([  
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
@@ -141,5 +141,5 @@ def parsingRecipeCO2(response_json):
 
 
 ## THIS IS FOR SINGLE PAGE TESTING
-if __name__ == '__main__':
-      app.run_server( host = '127.0.0.1',port = 8087, debug = True)
+# if __name__ == '__main__':
+#       app.run_server( host = '127.0.0.1',port = 8087, debug = True)

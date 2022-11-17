@@ -6,22 +6,39 @@ from dash_labs.plugins.pages import register_page
 app = dash.Dash(__name__,use_pages=True)
 
 
-app.layout = html.Div(
-    [
-        # main app framework
-        # html.Div("Green Recipe", style={'fontSize':50, 'textAlign':'center'}),
-        html.Div([
-            dcc.Link(page['name']+"  |  ", href=page['path'])
-            for page in dash.page_registry.values()
-        ]),
-        html.Hr(),
-        # dcc.Location(id='url'),
+# app.layout = html.Div([
+# 	html.H1('Multi-page app with Dash Pages'),
 
-        # html.Div(id='page-content'),
-        # content of each page
-        dash.page_container
-    ]
-)
+#     html.Div(
+#         [
+#             html.Div(
+#                 dcc.Link(
+#                     f"{page['name']}", href=page['path']
+#                 )
+#             )
+#             for page in dash.page_registry.values()
+#         ]
+#     ),
+
+# 	dash.page_container
+# ])
+
+app.layout = html.Div([
+
+    html.Div(
+        [
+            html.Div(
+                dcc.Link(
+                    f"{page['name']}", href=page['path']
+                )
+            )
+            for page in dash.page_registry.values()
+            
+        ]
+    ),
+
+	dash.page_container
+])
 
 # @app.callback([Output("page-content", "children"),
 #               Input('url', 'pathname')
@@ -42,4 +59,4 @@ app.layout = html.Div(
 if __name__ == '__main__':
     app.run_server(host = '127.0.0.1',port = 8085,debug = True)
 
-     
+print(dash.page_registry.values())    
