@@ -158,10 +158,11 @@ def update_result(n_clicks, value):
      imgredientName = checkValidURL(value)
 
      backendURL = LOCAL_TEST_URL
-     response = requests.get(url = backendURL,  params={'recipe': recipeName})
+     response = requests.get(url = backendURL,  
+     params={'ingrd':ingredients names,'Ingrd_q':ingredients quantity,
+     'Ingrd_u':ingredients unit})
 
      ingrdco2 = ''
-
 
      if (response.status_code != 204 and
           response.headers["content-type"].strip().startswith("application/json")):
@@ -178,6 +179,17 @@ def update_result(n_clicks, value):
                True
 
      return ingrd_details_fig
+
+def parsingRecipeCO2(response_json):
+     totalco2 = response_json['totalCO2']
+     ingrdList = response_json['ingrdCO2List']
+     ingrd = []
+     co2 = []
+     for i in ingrdList:
+          ingrd.append(i['ingredient'])
+          co2.append(i['co2'])
+     ingrdData = {'ingredient':ingrd,'co2':co2}
+     return totalco2, ingrdData
 
 
 ## IT IS FOR SINGLE PAGE TESTING

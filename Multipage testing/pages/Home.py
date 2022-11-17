@@ -3,7 +3,7 @@ from dash import dash, html, dcc, Input, Output, State
 from dash_labs.plugins.pages import register_page
 
 # # app = dash.Dash(__name__, assets_folder="assets")
-# register_page(__name__,path="/")
+register_page(__name__,path="/")
 
 # app.layout = html.Div([
 layout = html.Div([

@@ -38,7 +38,7 @@ navigation = html.Div(
     style=Navigation_Style,
 )
 
-app = dash.Dash(__name__)
+app = dash.Dash(__name__,use_pages= True)
 
 # app.layout = html.Div([
 #     dcc.Location(id="url"),
@@ -81,3 +81,28 @@ if __name__ == '__main__':
     app.run(host = '127.0.0.1',port = 8085,debug = True)
 
 
+def generate_piechart(n_clicks, value):
+
+     imgredientName = checkValidURL(value)
+
+     backendURL = LOCAL_TEST_URL
+     response = requests.get(url = backendURL,  params={'recipe': recipeName})
+
+     ingrdco2 = ''
+
+
+     if (response.status_code != 204 and
+          response.headers["content-type"].strip().startswith("application/json")):
+          try:
+               response_json = response.json()
+               recipeName, totalco2, ingrdList = parsingRecipeCO2(response_json)
+               title = 'Total CO2 of "' + recipeName + '" is ' + str(totalco2) + ' / 1 serve'
+               BDdata= pd.DataFrame(ingrdList).sort_values(by=['co2'], ascending=False)
+               ingrd_details_fig = px.bar(BDdata, x='ingredient', y='co2',text_auto=True,
+                                             title=title)
+               ingrd_details_fig.update_layout(title_x=0.5)
+
+          except ValueError:
+               True
+
+     return ingrd_details_fig
