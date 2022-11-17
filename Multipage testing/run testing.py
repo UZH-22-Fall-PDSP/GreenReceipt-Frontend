@@ -106,3 +106,5 @@ def generate_piechart(n_clicks, value):
                True
 
      return ingrd_details_fig
+
+     

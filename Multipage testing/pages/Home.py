@@ -13,10 +13,12 @@ layout = html.Div([
     html.Br(),
     html.H3("Quickly and easily get sustainable scores of your recipe!",style={'font':'30px',"text-align": "center"}),
     html.H3("Your effort can help improve the world environment!",style={'font':'30px',"text-align": "center"}),
-    html.Button('START', id='Home_startbutton', 
+    dcc.Link(html.Button('START', id='Home_startbutton', 
                  n_clicks=0, style={"text-align": "center", 
                  "width":250, "height" : 70, "border-radius":20, 
                  "font-size":35, "background": "#DBE9D7","position": "relative","left":"42%"}),
+                 href = "/DesignRecipe", refresh=True
+                 ),
     html.Br(),
     html.Br(),
     html.Br(),

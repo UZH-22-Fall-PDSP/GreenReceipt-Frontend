@@ -12,7 +12,7 @@ from dash_labs.plugins.pages import register_page
 ## THIS IS FOR SINGLE PAGE TESTING
 # app = dash.Dash(__name__, assets_folder="assets")
 
-register_page(__name__)
+register_page(__name__,path="/DesignRecipe")
 
 
 ## THIS IS FOR SINGLE PAGE TESTING
@@ -112,7 +112,6 @@ layout= html.Div([
 
 
                          html.Br(), html.Br(),
-
                     ])
 
 ## For backend 
@@ -159,8 +158,8 @@ def update_result(n_clicks, value):
 
      backendURL = LOCAL_TEST_URL
      response = requests.get(url = backendURL,  
-     params={'ingrd':ingredients names,'Ingrd_q':ingredients quantity,
-     'Ingrd_u':ingredients unit})
+     params={'ingrd':ingredients_names,'Ingrd_q':ingredients_quantity,
+     'Ingrd_u':ingredients_unit})
 
      ingrdco2 = ''
 
