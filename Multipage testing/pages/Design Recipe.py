@@ -12,7 +12,8 @@ from dash_labs.plugins.pages import register_page
 ## THIS IS FOR SINGLE PAGE TESTING
 # app = dash.Dash(__name__, assets_folder="assets")
 
-register_page(__name__,path="/DesignRecipe")
+register_page(__name__)
+#path="/DesignRecipe")
 
 
 ## THIS IS FOR SINGLE PAGE TESTING
@@ -154,7 +155,6 @@ layout= html.Div([
 
 def update_result(n_clicks, value):
 
-     imgredientName = checkValidURL(value)
 
      backendURL = LOCAL_TEST_URL
      response = requests.get(url = backendURL,  

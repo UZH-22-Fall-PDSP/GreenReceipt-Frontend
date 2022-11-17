@@ -16,7 +16,7 @@ GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
 ingrd_cat_fig1 = go.Figure(data=[go.Pie(labels=ingrdList,values=co2List, hole= 0.3)])
 
-register_page(__name__,path="/IngredientCalculator")
+register_page(__name__)
 
 layout = html.Div([
          html.H2('CO2 Emssion of ingredients'),

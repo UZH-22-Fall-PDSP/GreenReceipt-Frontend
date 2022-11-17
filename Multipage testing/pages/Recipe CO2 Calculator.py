@@ -9,7 +9,7 @@ import requests
 import json
 from dash_labs.plugins.pages import register_page
 
-register_page(__name__,path="/RecipeCO2Calculator")
+register_page(__name__)
 
 layout = html.Div([        
                          ## [COMPONENET] URL RECIPE
@@ -48,10 +48,10 @@ layout = html.Div([
 LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
 GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
-@callback(
-     Output('ingrd_detail_graph','figure'),
-     Input('url_recipe_cal', 'n_clicks'),
-     State('url_recipe_input', 'value'))
+# @callback(
+#      Output('ingrd_detail_graph','figure'),
+#      Input('url_recipe_cal', 'n_clicks'),
+#      State('url_recipe_input', 'value'))
 
 
 def update_result(n_clicks, value):
