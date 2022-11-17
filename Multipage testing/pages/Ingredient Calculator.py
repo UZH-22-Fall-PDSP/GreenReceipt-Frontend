@@ -32,7 +32,7 @@ layout = html.Div([
                                    html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":100,"marginBottom":20, "font-size":60}),
 
                                    ## [SUB-COMPONENT] URL RECIPE - INPUT
-                                   dcc.Input(id='Ingrd_input',
+                                   dcc.Input(id='Ingrd',
                                              placeholder='Enter the ingredient here',
                                              type='text',
                                              style={"border-radius":5, "width":650, "padding" : 10,"font-size":20}),
@@ -40,7 +40,7 @@ layout = html.Div([
                                    html.Br(), html.Br(),
 
                                    ## [SUB-COMPONENT] URL RECIPE - CALCULATION BUTTON
-                                   html.Button('CALCULATION', id='url_recipe_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
+                                   html.Button('CALCULATION', id='manual_ingrd_click', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
                                    ], style={"text-align": "center", "border-radius":20}),
 
                          
@@ -72,11 +72,17 @@ layout = html.Div([
 LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
 GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
-# @callback(
-#      Output('ingrd_detail_graph','figure'),
-#      Input('url_recipe_cal', 'n_clicks'),
-#      State('url_recipe_input', 'value')
-# )
+# For backend
+@callback(Output('Ingrd','children'),
+              Input('anual_ingrd_click','n_clicks'),
+              State('Ingrd','value')
+             )
+
+
+
+
+
+
 
 def update_result(n_clicks, value):
 

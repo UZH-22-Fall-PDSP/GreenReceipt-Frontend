@@ -21,11 +21,7 @@ layout= html.Div([
 
                                    ## [SUB-COMPONENT] URL RECIPE - INPUT
                                    ], style={"text-align": "center", "border-radius":20}),
-
                          
-                         html.Br(), html.Br(),
-
-
                          html.Br(), html.Br(),
 
                          ## [COMPONENET] MANUAL INGREDIENTS
@@ -113,7 +109,74 @@ layout= html.Div([
                          html.Br(), html.Br(),
 
                     ])
-#callback
+
+# For backend 
+
+
+# @callback(Output('Output_Ingrd','children'),
+#               Input('manual_ingrd_cal','n_clicks'),
+#               State('ingredient1','value'),
+#               State('ingredient2','value'),
+#               State('ingredient3','value'),
+#               State('ingredient4','value')
+#              )
+
+# @callback(Output('Output_quantity','children'),
+#               Input('manual_ingrd_cal','n_clicks'),
+#               State('ingrdient1','value'),
+#               State('ingrdient2','value'),
+#               State('ingrdient3','value'),
+#               State('ingrdient4','value')
+#              )
+
+# @callback(Output('Output_unit','children'),
+#               Input('manual_ingrd_cal','n_clicks'),
+#               State('ingrdient1','value'),
+#               State('ingrdient2','value'),
+#               State('ingrdient3','value'),
+#               State('ingrdient4','value')
+#              )
+
+# def update_output(clicks, ingredient1,ingredient2, ingredient3, ingredient4,):
+#      if clicks is not None:
+#             Ingrd = ingredient1 + ingredient2 + ingredient3 + ingredient4 
+#             Ingrd_q = quantity1 + quantity2 + quantity3 + quantity4
+#             Ingrd_u = unit1 + unit2 + unit3 + unit4 
+#             print(Ingrd, Ingrd_q, Ingrd_u)
+
+
+# LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
+# GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
+
+#Callback the CO2 emssion
+
+def update_result(n_clicks, value):
+
+     imgredientName = checkValidURL(value)
+
+     backendURL = LOCAL_TEST_URL
+     response = requests.get(url = backendURL,  params={'recipe': recipeName})
+
+     ingrdco2 = ''
+
+
+     if (response.status_code != 204 and
+          response.headers["content-type"].strip().startswith("application/json")):
+          try:
+               response_json = response.json()
+               recipeName, totalco2, ingrdList = parsingRecipeCO2(response_json)
+               title = 'Total CO2 of "' + recipeName + '" is ' + str(totalco2) + ' / 1 serve'
+               BDdata= pd.DataFrame(ingrdList).sort_values(by=['co2'], ascending=False)
+               ingrd_details_fig = px.bar(BDdata, x='ingredient', y='co2',text_auto=True,
+                                             title=title)
+               ingrd_details_fig.update_layout(title_x=0.5)
+
+          except ValueError:
+               True
+
+     return ingrd_details_fig
+
+
 
 
 

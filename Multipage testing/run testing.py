@@ -38,7 +38,7 @@ navigation = html.Div(
     style=Navigation_Style,
 )
 
-app = dash.Dash(__name__, use_pages=True)
+app = dash.Dash(__name__)
 
 # app.layout = html.Div([
 #     dcc.Location(id="url"),
@@ -55,12 +55,28 @@ app.layout = html.Div(
             for page in dash.page_registry.values()
         ]),
         html.Hr(),
+        # dcc.Location(id='url'),
 
+        # html.Div(id='page-content'),
         # content of each page
         dash.page_container
     ]
 )
 
+# @app.callback([Output("page-content", "children"),
+#               Input('url', 'pathname')
+#               ])
+
+# def display_content(pathname):
+
+#     if pathname == '/':
+#         return home.layout
+
+#     elif pathname == '/a':
+#         return archive.layout()
+        
+#     else:
+#         return home.layout
 if __name__ == '__main__':
     app.run(host = '127.0.0.1',port = 8085,debug = True)
 
