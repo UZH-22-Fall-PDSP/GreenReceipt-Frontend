@@ -43,7 +43,8 @@ app.layout = html.Div([
                                    html.Br()
                                    ], style={"text-align": "center","font-size":30}),
 
-                         html.Br(), html.Br()
+                         html.Br(), html.Br(),
+                    
                         ],
      
     # style for the whole page
@@ -52,12 +53,12 @@ app.layout = html.Div([
     # backgroud picture
     "background-image": "url(assets/background2.png)",
     # backgroud size and position
-    "background-position-y":"top", "background-size": "cover",
+    "background-position-y":"top", "background-size": "contain","background-repeat":"no-repeat",
 
     # scrollbar
     "scrollbar-gutter": "stable",
     # size of the whole page
-    "margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"
+    #"margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"
     })
 
 
