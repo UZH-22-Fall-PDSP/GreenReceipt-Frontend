@@ -18,7 +18,7 @@ app.layout = html.Div([
                          html.Div([
 
                                    html.Br(),html.Br(),html.Br(),html.Br(),
-                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font": "Black"}),
+                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font-family":"sans-serif","color":"white"}),
 
                                    ## [SUB-COMPONENT] URL RECIPE - INPUT
                                    dcc.Input(id='url_recipe_input',
@@ -33,7 +33,7 @@ app.layout = html.Div([
                                    html.Br(),html.Br(),html.Br(),html.Br(),
                                    ], 
                                    
-                                   style={"text-align": "center", "border-radius":20,
+                                   style={"text-align": "center",
                                              # backgroud picture
                                               "background-image": "url(assets/Background2.jpg)",
                                               # backgroud size and position
@@ -48,13 +48,27 @@ app.layout = html.Div([
                          ## [COMPONENET] CO2 CALCULATION RESULT
                          html.Div([
                                    ## [SUB-COMPONENT] CO2 CALCULATION RESULT - TOTAL OUTPUT
-                                   html.H3("Your Recipe's CO2 Emissions", style={"text-align": "center", 'margin':20, "font-size":40}),
+                                   html.H3("Your Recipe's CO2 Emissions", style={"text-align": "center", "font-size":40}),
                                    ## [SUB-COMPONENT] CO2 CALCULATION RESULT - INGREDIENTS DETAIL OUTPUT
                                    dcc.Graph(id='ingrd_detail_graph'),
                                    html.Br()
-                                   ], style={"text-align": "center","font-size":30}),
+                                   ], style={"text-align": "center","font-size":30,"width":"80%","margin":"0 auto"}),
 
                          html.Br(), html.Br(),
+
+                         ## [COMPONENET] Simple comment
+
+                         html.Div([
+                                  html.Br(),html.Br(),
+                                  html.H5("Quickly and easily get sustainable scores! of your recipe!", style={"text-align": "center", "font-size":30,}),
+                                  html.H5("Your effort can help improve the world environment!", style={"text-align": "center", "font-size":30}),
+                                  html.Br(),html.Br(),
+                                  ],
+                                  style={"background-color":"lightgrey","width":"70%",
+                                  "margin":"0 auto","border-radius":10}
+                                  ),
+                         
+                         html.Br(),html.Br(),
                     
                         ],
      
@@ -64,7 +78,7 @@ app.layout = html.Div([
     # scrollbar
     "scrollbar-gutter": "stable",
     # size of the whole page
-    #"margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"
+    "margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"
     })
 
 

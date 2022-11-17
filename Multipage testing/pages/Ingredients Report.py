@@ -7,18 +7,18 @@ from dash import dash, html, dcc, Input, Output, State, callback
 from dash.dependencies import Input, Output
 import requests
 import json
-from dash_labs.plugins.pages import register_page
+#from dash_labs.plugins.pages import register_page
 import plotly.graph_objects as go
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
 GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
 
-register_page(__name__)
-# app = dash.Dash(__name__, assets_folder="assets")
+#register_page(__name__)
+app = dash.Dash(__name__, assets_folder="assets")
 
-# app.layout = html.Div([
-layout = html.Div([
+app.layout = html.Div([
+#layout = html.Div([
          html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":100,"marginBottom":20, "font-size":60}),
          html.H2('CO2 Emssion of ingredients',style={"text-align": "center"}),
          dcc.Graph('id=ingrd_cat_fig1',style={'display': 'inline-block'}) 
@@ -59,5 +59,5 @@ def parsingCategoryCO2(response_json):
 
 
 ## THIS IS FOR SINGLE PAGE TESTING  
-# if __name__ == '__main__':
-#     app.run(host = '127.0.0.1',port = 8093,debug = True)
+if __name__ == '__main__':
+     app.run(host = '127.0.0.1',port = 8093,debug = True)
