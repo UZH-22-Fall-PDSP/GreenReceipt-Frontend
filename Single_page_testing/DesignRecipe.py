@@ -9,17 +9,15 @@ import requests
 import json
 from dash_labs.plugins.pages import register_page
 
-## THIS IS FOR SINGLE PAGE TESTING
-# app = dash.Dash(__name__, assets_folder="assets")
+# THIS IS FOR SINGLE PAGE TESTING
+app = dash.Dash(__name__, assets_folder="assets")
 
-register_page(__name__,path="/DesignRecipe")
 #path="/DesignRecipe")
 
 
 ## THIS IS FOR SINGLE PAGE TESTING
-# app.layout = html.Div([  
-
-layout= html.Div([      
+app.layout = html.Div([  
+   
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 

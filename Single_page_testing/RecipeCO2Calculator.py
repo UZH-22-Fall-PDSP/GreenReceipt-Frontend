@@ -3,40 +3,44 @@ import dash
 import pandas as pd
 import plotly.express as px
 import plotly.graph_objects as go
-from dash import dash, html, dcc, Input, Output, State, callback
+from dash import dash, html, dcc, Input, Output, State
 from dash.dependencies import Input, Output
 import requests
 import json
-from dash_labs.plugins.pages import register_page
+# from dash_labs.plugins.pages import register_page
 
-
-#picture link from github 
-tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
-
-## THIS IS FOR SINGLE PAGE TESTING
+# register_page(__name__)
 app = dash.Dash(__name__, assets_folder="assets")
 
-
-## THIS IS FOR SINGLE PAGE TESTING
-app.layout = html.Div([    
-
-
+# layout = html.Div([  
+app.layout = html.Div([  
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
-                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":100,"marginBottom":20, "font-size":60}),
+                                   html.Br(),html.Br(),html.Br(),html.Br(),
+                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font": "Black"}),
 
                                    ## [SUB-COMPONENT] URL RECIPE - INPUT
-                                   dcc.Input(id='Ingrd',
-                                             placeholder='Enter the ingredient here',
+                                   dcc.Input(id='url_recipe_input',
+                                             placeholder='Input your Recipe URL from food.com',
                                              type='text',
                                              style={"border-radius":5, "width":650, "padding" : 10,"font-size":20}),
 
-                                   html.Br(), html.Br(),
+                                   html.Br(), html.Br(),html.Br(), html.Br(),
 
                                    ## [SUB-COMPONENT] URL RECIPE - CALCULATION BUTTON
-                                   html.Button('CALCULATION', id='manual_ingrd_click', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
-                                   ], style={"text-align": "center", "border-radius":20}),
+                                   html.Button('CALCULATION', id='url_recipe_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "white"}),
+                                   html.Br(),html.Br(),html.Br(),html.Br(),
+                                   ], 
+                                   
+                                   style={"text-align": "center", "border-radius":20,
+                                             # backgroud picture
+                                              "background-image": "url(assets/Background2.jpg)",
+                                              # backgroud size and position
+                                              "background-position-y":"top", "background-size": "cover",
+                                              # margin for the district
+                                              "margin-top":"-10px"
+                                                  }),
 
                          
                          html.Br(), html.Br(),
@@ -44,43 +48,34 @@ app.layout = html.Div([
                          ## [COMPONENET] CO2 CALCULATION RESULT
                          html.Div([
                                    ## [SUB-COMPONENT] CO2 CALCULATION RESULT - TOTAL OUTPUT
-                                   html.H3("CO2 Emissions:" , style={"text-align": "center", 'margin':20, "font-size":40}),
+                                   html.H3("Your Recipe's CO2 Emissions", style={"text-align": "center", 'margin':20, "font-size":40}),
                                    ## [SUB-COMPONENT] CO2 CALCULATION RESULT - INGREDIENTS DETAIL OUTPUT
                                    dcc.Graph(id='ingrd_detail_graph'),
                                    html.Br()
                                    ], style={"text-align": "center","font-size":30}),
 
                          html.Br(), html.Br(),
+                    
+                        ],
+     
+    # style for the whole page
+    style={
 
-                         ## [COMPONENET] MANUAL INGREDIENTS
-                         html.Div([
-                                   
-                                   html.Br(), html.Br()]),
-
-                         html.Br(), html.Br(),
-
-                         html.Img(src=tree)
-                    ])
-
+    # scrollbar
+    "scrollbar-gutter": "stable",
+    # size of the whole page
+    #"margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"
+    })
 
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
 GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
-# For backend
-@callback(Output('Ingrd','children'),
-              Input('manual_ingrd_click','n_clicks'),
-              State('Ingrd','value')
-             )
+# @callback(
+#      Output('ingrd_detail_graph','figure'),
+#      Input('url_recipe_cal', 'n_clicks'),
+#      State('url_recipe_input', 'value'))
 
-def update_output(clicks, input_value):
-     if clicks is not None:
-            print(clicks, input_value)
-
-
-
-
-# Get the result from backend
 
 def update_result(n_clicks, value):
 
@@ -132,7 +127,6 @@ def parsingRecipeCO2(response_json):
      return recipeName, totalco2, ingrdData
 
 
-
-## THIS IS FOR SINGLE PAGE TESTING  
+## THIS IS FOR SINGLE PAGE TESTING
 if __name__ == '__main__':
-    app.run(host = '127.0.0.1',port = 8089,debug = True)
+      app.run_server( host = '127.0.0.1',port = 8087, debug = True)
