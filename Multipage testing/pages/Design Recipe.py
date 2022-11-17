@@ -13,6 +13,7 @@ from dash_labs.plugins.pages import register_page
 # app = dash.Dash(__name__, assets_folder="assets")
 
 register_page(__name__)
+#path="/DesignRecipe")
 
 
 ## THIS IS FOR SINGLE PAGE TESTING
@@ -112,7 +113,6 @@ layout= html.Div([
 
 
                          html.Br(), html.Br(),
-
                     ])
 
 ## For backend 
@@ -155,13 +155,13 @@ layout= html.Div([
 
 def update_result(n_clicks, value):
 
-     imgredientName = checkValidURL(value)
 
      backendURL = LOCAL_TEST_URL
-     response = requests.get(url = backendURL,  params={'recipe': recipeName})
+     response = requests.get(url = backendURL,  
+     params={'ingrd':ingredients_names,'Ingrd_q':ingredients_quantity,
+     'Ingrd_u':ingredients_unit})
 
      ingrdco2 = ''
-
 
      if (response.status_code != 204 and
           response.headers["content-type"].strip().startswith("application/json")):
@@ -178,6 +178,17 @@ def update_result(n_clicks, value):
                True
 
      return ingrd_details_fig
+
+def parsingRecipeCO2(response_json):
+     totalco2 = response_json['totalCO2']
+     ingrdList = response_json['ingrdCO2List']
+     ingrd = []
+     co2 = []
+     for i in ingrdList:
+          ingrd.append(i['ingredient'])
+          co2.append(i['co2'])
+     ingrdData = {'ingredient':ingrd,'co2':co2}
+     return totalco2, ingrdData
 
 
 ## IT IS FOR SINGLE PAGE TESTING

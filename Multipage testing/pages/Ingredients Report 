@@ -20,14 +20,14 @@ register_page(__name__)
 
 layout = html.Div([
          html.H2('CO2 Emssion of ingredients'),
-         dcc.Graph('id=ingrd_cat_fig1') 
+         dcc.Graph('id=ingrd_cat_fig1',style={'display': 'inline-block'}) 
         ])
 
 
 def update_result(n_clicks, value):
 
      backendURL = LOCAL_TEST_URL
-     response = requests.get(url = backendURL,  params={'cat': catergory})
+     response = requests.get(url = backendURL,  params={'cat':catergory})
 
      if (response.status_code != 204 and
           response.headers["content-type"].strip().startswith("application/json")):
