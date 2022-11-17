@@ -1,12 +1,11 @@
 import dash
 from dash import dash, html, dcc, Input, Output, State
-from dash_labs.plugins.pages import register_page
 
-# app = dash.Dash(__name__, assets_folder="assets")
-register_page(__name__,path="/")
+app = dash.Dash(__name__, assets_folder="assets")
+#register_page(__name__,path="/")
 
-# app.layout = html.Div([
-layout = html.Div([
+app.layout = html.Div([
+#layout = html.Div([
     html.Br(),
     html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":"15%","marginBottom":20, "font-size":60}),
     html.H2("Try your recipre CO2 Calculator",style={"text-align": "center"}),
@@ -30,6 +29,6 @@ layout = html.Div([
     "margin-block":"-10px -10px","margin-left":"-1%","margin-right":"-1%"
     })
 
-# if __name__ == '__main__':
-#     app.run(host = '127.0.0.1',port = 8040,debug = True)
+if __name__ == '__main__':
+      app.run(host = '127.0.0.1',port = 8040,debug = True)
  
