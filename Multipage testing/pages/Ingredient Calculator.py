@@ -12,11 +12,10 @@ from dash_labs.plugins.pages import register_page
 
 #picture link from github 
 tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
-#external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 
-#app = Dash(__name__, external_stylesheets=external_stylesheets)
-
+## THIS IS FOR SINGLE PAGE TESTING
 # app = dash.Dash(__name__, assets_folder="assets")
+
 register_page(__name__)
 
 
@@ -24,8 +23,10 @@ register_page(__name__)
 # dash.register_page("calculate", layout=html.Div('Calculate'))
 # dash.register_page("result", layout=html.Div('Result'))
 
+## THIS IS FOR SINGLE PAGE TESTING
+# app.layout = html.Div([    
+
 layout = html.Div([
-# app.layout = html.Div([        
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
@@ -78,11 +79,14 @@ GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
               State('Ingrd','value')
              )
 
+def update_output(clicks, input_value):
+     if clicks is not None:
+            print(clicks, input_value)
 
 
 
 
-
+# Get the result from backend
 
 def update_result(n_clicks, value):
 
@@ -133,5 +137,8 @@ def parsingRecipeCO2(response_json):
      ingrdData = {'ingredient':ingrd,'co2':co2}
      return recipeName, totalco2, ingrdData
 
+
+
+## THIS IS FOR SINGLE PAGE TESTING  
 # if __name__ == '__main__':
 #     app.run(host = '127.0.0.1',port = 8089,debug = True)
