@@ -14,9 +14,9 @@ from dash_labs.plugins.pages import register_page
 tree = 'https://github.com/UZH-22-Fall-PDSP/GreenRecipe-Frontend/blob/main/assets/tree.png?raw=true'
 
 ## THIS IS FOR SINGLE PAGE TESTING
-# app = dash.Dash(__name__, assets_folder="assets")
+app = dash.Dash(__name__, assets_folder="assets")
 
-register_page(__name__)
+# register_page(__name__)
 
 
 # dash.register_page("home",  path='/', layout=html.Div('Home Page'))
@@ -24,9 +24,9 @@ register_page(__name__)
 # dash.register_page("result", layout=html.Div('Result'))
 
 ## THIS IS FOR SINGLE PAGE TESTING
-# app.layout = html.Div([    
+app.layout = html.Div([    
 
-layout = html.Div([
+# layout = html.Div([
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
@@ -75,7 +75,7 @@ GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
 
 # For backend
 @callback(Output('Ingrd','children'),
-              Input('anual_ingrd_click','n_clicks'),
+              Input('manual_ingrd_click','n_clicks'),
               State('Ingrd','value')
              )
 
@@ -140,5 +140,5 @@ def parsingRecipeCO2(response_json):
 
 
 ## THIS IS FOR SINGLE PAGE TESTING  
-# if __name__ == '__main__':
-#     app.run(host = '127.0.0.1',port = 8089,debug = True)
+if __name__ == '__main__':
+    app.run(host = '127.0.0.1',port = 8089,debug = True)
