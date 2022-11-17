@@ -17,7 +17,8 @@ app.layout = html.Div([
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
-                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":100,"marginBottom":20, "font-size":60}),
+                                   html.Br(),html.Br(),html.Br(),html.Br(),
+                                   html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font": "Black"}),
 
                                    ## [SUB-COMPONENT] URL RECIPE - INPUT
                                    dcc.Input(id='url_recipe_input',
@@ -25,15 +26,20 @@ app.layout = html.Div([
                                              type='text',
                                              style={"border-radius":5, "width":650, "padding" : 10,"font-size":20}),
 
-                                   html.Br(), html.Br(),
+                                   html.Br(), html.Br(),html.Br(), html.Br(),
 
                                    ## [SUB-COMPONENT] URL RECIPE - CALCULATION BUTTON
-                                   html.Button('CALCULATION', id='url_recipe_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
-                                   ], style={"text-align": "center", "border-radius":20,
-                                                  # backgroud picture
-                                                  "background-image": "url(assets/Background2.png)",
-                                                  # backgroud size and position
-                                                  "background-position-y":"top", "background-size": "cover"
+                                   html.Button('CALCULATION', id='url_recipe_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "white"}),
+                                   html.Br(),html.Br(),html.Br(),html.Br(),
+                                   ], 
+                                   
+                                   style={"text-align": "center", "border-radius":20,
+                                             # backgroud picture
+                                              "background-image": "url(assets/Background2.jpg)",
+                                              # backgroud size and position
+                                              "background-position-y":"top", "background-size": "cover",
+                                              # margin for the district
+                                              "margin-top":"-10px"
                                                   }),
 
                          
