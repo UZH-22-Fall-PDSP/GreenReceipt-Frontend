@@ -29,7 +29,12 @@ app.layout = html.Div([
 
                                    ## [SUB-COMPONENT] URL RECIPE - CALCULATION BUTTON
                                    html.Button('CALCULATION', id='url_recipe_cal', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "#DBE9D7"})
-                                   ], style={"text-align": "center", "border-radius":20}),
+                                   ], style={"text-align": "center", "border-radius":20,
+                                                  # backgroud picture
+                                                  "background-image": "url(assets/Background2.png)",
+                                                  # backgroud size and position
+                                                  "background-position-y":"top", "background-size": "cover"
+                                                  }),
 
                          
                          html.Br(), html.Br(),
@@ -49,11 +54,6 @@ app.layout = html.Div([
      
     # style for the whole page
     style={
-
-    # backgroud picture
-    "background-image": "url(assets/background2.png)",
-    # backgroud size and position
-    "background-position-y":"top", "background-size": "contain","background-repeat":"no-repeat",
 
     # scrollbar
     "scrollbar-gutter": "stable",
