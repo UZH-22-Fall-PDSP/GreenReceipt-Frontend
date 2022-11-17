@@ -19,10 +19,64 @@ app = dash.Dash(__name__, assets_folder="assets")
 
 app.layout = html.Div([
 #layout = html.Div([
-         html.H1("🌿 GREEN RECIPE 🌿",style={"text-align": "center","marginTop":100,"marginBottom":20, "font-size":60}),
-         html.H2('CO2 Emssion of ingredients',style={"text-align": "center"}),
-         dcc.Graph('id=ingrd_cat_fig1',style={'display': 'inline-block'}) 
-        ])
+         
+          ## [COMPONENET] Title
+               html.Div([
+
+                    html.Br(),html.Br(),html.Br(),html.Br(),
+                    html.H1("REPORT OF INGREDIENT CO2",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font-family":"sans-serif","color":"White"}),
+                    html.Br(),html.Br(),html.Br(),
+                    ],
+                    
+                    style={"text-align": "center",
+                    # backgroud picture
+                     "background-image": "url(assets/Background4.jpg)","opacity": "0.9",
+                    # backgroud size and position
+                    "background-position-y":"center", "background-size": "cover",
+                    # margin for the district
+                    "margin-top":"-10px"
+                    }
+                    
+               ),
+         
+         ##[COMPONENET] Fixed insight graph
+          html.Div([
+               dcc.Graph('id=ingrd_cat_fig1',style={'display': 'inline-block'}) 
+               ],
+
+               #style for the graph
+               style={
+                    "text-align": "center","font-size":30,"width":"90%","margin":"0 auto"
+
+               }
+          ),
+
+          ## [COMPONENET] Simple comment
+          html.Div([
+               html.Br(),html.Br(),
+               html.H5("Description of something", style={"text-align": "center", "font-size":30,}),
+               html.H5("whole dataset table", style={"text-align": "center", "font-size":30}),
+               html.Br(),html.Br(),
+               ],
+               style={"background-color":"lightgrey","width":"70%",
+               "margin":"0 auto","border-radius":10}
+                                  ),
+                         
+          html.Br(), html.Br(), html.Br(), html.Br()
+          
+     ],
+         
+
+     #style for the whole page
+     style={
+
+      # scrollbar
+      "scrollbar-gutter": "stable",
+      # size of the whole page
+      "margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"
+     }
+  
+ )
 
 
 def update_result(n_clicks, value):

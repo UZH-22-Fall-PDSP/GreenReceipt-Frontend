@@ -68,8 +68,7 @@ app.layout = html.Div([
                                   "margin":"0 auto","border-radius":10}
                                   ),
                          
-                         html.Br(),html.Br(),
-                    
+                         html.Br(), html.Br(),
                         ],
      
     # style for the whole page
