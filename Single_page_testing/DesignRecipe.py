@@ -9,17 +9,15 @@ import requests
 import json
 from dash_labs.plugins.pages import register_page
 
-## THIS IS FOR SINGLE PAGE TESTING
+# THIS IS FOR SINGLE PAGE TESTING
 app = dash.Dash(__name__, assets_folder="assets")
 
-register_page(__name__)
 #path="/DesignRecipe")
 
 
 ## THIS IS FOR SINGLE PAGE TESTING
 app.layout = html.Div([  
-
-# layout= html.Div([      
+   
                          ## [COMPONENET] URL RECIPE
                          html.Div([
 
@@ -115,41 +113,42 @@ app.layout = html.Div([
                          html.Br(), html.Br(),
                     ])
 
-## For backend 
-# @callback(Output('Output_Ingrd','children'),
-#               Input('manual_ingrd_cal','n_clicks'),
-#               State('ingredient1','value'),
-#               State('ingredient2','value'),
-#               State('ingredient3','value'),
-#               State('ingredient4','value')
-#              )
+## callback
+@callback(Output('Output_Ingrd','children'),
+              Input('manual_ingrd_cal','n_clicks'),
+              State('ingredient1','value'),
+              State('ingredient2','value'),
+              State('ingredient3','value'),
+              State('ingredient4','value')
+             )
 
-# @callback(Output('Output_quantity','children'),
-#               Input('manual_ingrd_cal','n_clicks'),
-#               State('ingrdient1','value'),
-#               State('ingrdient2','value'),
-#               State('ingrdient3','value'),
-#               State('ingrdient4','value')
-#              )
+@callback(Output('Output_quantity','children'),
+              Input('manual_ingrd_cal','n_clicks'),
+              State('qunantity1','value'),
+              State('qunantity2','value'),
+              State('qunantity3','value'),
+              State('qunantity4','value')
+             )
 
-# @callback(Output('Output_unit','children'),
-#               Input('manual_ingrd_cal','n_clicks'),
-#               State('ingrdient1','value'),
-#               State('ingrdient2','value'),
-#               State('ingrdient3','value'),
-#               State('ingrdient4','value')
-#              )
+@callback(Output('Output_unit','children'),
+              Input('manual_ingrd_cal','n_clicks'),
+              State('unit1','value'),
+              State('unit2','value'),
+              State('unit3','value'),
+              State('unit4','value')
+             )
 
-# def update_output(clicks, ingredient1,ingredient2, ingredient3, ingredient4,):
-#      if clicks is not None:
-#             Ingrd = ingredient1 + ingredient2 + ingredient3 + ingredient4 
-#             Ingrd_q = quantity1 + quantity2 + quantity3 + quantity4
-#             Ingrd_u = unit1 + unit2 + unit3 + unit4 
-#             print(Ingrd, Ingrd_q, Ingrd_u)
+def update_output(clicks, ingredient1,ingredient2, ingredient3, ingredient4,):
+     if clicks is not None:
+            Ingrd = ingredient1 + ingredient2 + ingredient3 + ingredient4 
+            Ingrd_q = quantity1 + quantity2 + quantity3 + quantity4
+            Ingrd_u = unit1 + unit2 + unit3 + unit4 
+            print(Ingrd, Ingrd_q, Ingrd_u)
 
 
-# LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
-# GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
+LOCAL_TEST_URL = 'http://127.0.0.1:5000/recipeCO2'
+GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
+
 
 #Callback the CO2 emssion
 
@@ -157,9 +156,9 @@ def update_result(n_clicks, value):
 
 
      backendURL = LOCAL_TEST_URL
-     response = requests.get(url = backendURL,  
-     params={'ingrd':ingredients_names,'Ingrd_q':ingredients_quantity,
-     'Ingrd_u':ingredients_unit})
+     response = requests.post(url = backendURL,  
+     params={'ingrd': Ingrd,'Ingrd_q':Ingrd_q,
+     'Ingrd_u':Ingrd_u})
 
      ingrdco2 = ''
 
