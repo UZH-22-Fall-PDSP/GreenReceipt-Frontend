@@ -99,6 +99,7 @@ layout = html.Div([
      }
   
  )
+ 
 
 
 def update_result(n_clicks, value):

@@ -1,6 +1,6 @@
 import dash
 from dash import html, dcc
-import dash_bootstrap_components as dbc
+#import dash_bootstrap_components as dbc
 # dbc = ash_bootstrap_components
 
 #styling the navigation bar 
