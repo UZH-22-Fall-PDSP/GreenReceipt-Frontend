@@ -8,14 +8,15 @@ app.layout = html.Div([
         [
             html.Br(),
             html.Div([
-            dcc.Link(page['name']+"  |  ", href=page['path'])
+            dcc.Link(" "+page['name']+"  |  ", href=page['path'])
             for page in dash.page_registry.values()
-            ],style = {"font": "Brown","font-size":20}),
+            ],style = {"font": "White","font-size":20,"text-align":"center"}),
+            html.Br(),
             html.Br()
-        ]
+        ],style ={"background-color":"Black","margin-block":"-10px 0px","margin-left":"-1%","margin-right":"-1%"}
     ),
 	dash.page_container
-],style = {"scrollbar-gutter": "stable"})
+],style = {"scrollbar-gutter": "stable" })
 
 if __name__ == '__main__':
 	app.run_server(debug=True)
