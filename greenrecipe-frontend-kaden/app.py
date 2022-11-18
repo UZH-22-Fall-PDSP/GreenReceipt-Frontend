@@ -1,5 +1,7 @@
-from dash import Dash, html, dcc
 import dash
+from dash import html, dcc
+#import dash_bootstrap_components as dbc
+from dash_labs.plugins.pages import register_page
 
 app = Dash(__name__, use_pages=True, suppress_callback_exceptions=True)
 
