@@ -18,7 +18,7 @@ layout = html.Div([
                 ## [COMPONENET]
                 html.Div([
                         html.Br(),html.Br(),html.Br(),html.Br(),
-                        html.H1("DESIGN YOUR OWN RECIPE",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font": "Black"}),
+                        html.H1("DESIGN YOUR OWN RECIPE",style={"text-align": "center","margin-bottom":"100px", "font-size":60,"font": "White"}),
 
                         ## [SUB-COMPONENT] Ingredient - INPUT
                         dcc.Input(id='ingrd_input',
@@ -32,9 +32,9 @@ layout = html.Div([
 
                         ## [SUB-COMPONENT] Similar Ingredients Result - Pie Chart
                         dcc.Graph(id='ingrd_sim_graph')                     
-                        ], style={"text-align": "center", "border-radius":20,
+                        ], style={"text-align": "center",
                                     # backgroud picture
-                                    "background-image": "url(assets/Background2.jpg)",
+                                    "background-image": "url(assets/background3.png)",
                                     # backgroud size and position
                                     "background-position-y":"top", "background-size": "cover",
                                     # margin for the district
@@ -59,18 +59,26 @@ layout = html.Div([
                             dropdown={
                                 'u': {'options': [{'label': i, 'value': i} for i in ['g','kg']], 'clearable' : False}
                             },
-                        )]),                        
+                        )], style ={"margin":"0 15%"}),                        
                         
                         html.Div(children=[
                         ## [SUB-COMPONENT] Manual Recipe CO2 Output - INGREDIENTS DETAIL Bar graph
-                        dcc.Graph(id='manual_ingrd_detail_graph'),
+                        dcc.Graph(id='manual_ingrd_detail_graph',style={} ),
                         
                         ## [SUB-COMPONENT] Updating the manual recipe co2 - UPDATE BUTTON
                         html.Button('UPDATE', id='manual_ingrd_update', n_clicks=0, style={"text-align": "center", "width":200, "height" : 50, "border-radius":10, "font-size":20, "background": "white"})                        
-                        ])]
-                        ,style={'display': 'flex', 'flex-direction': 'row'}
-                        )
-                ])
+                        ]),]
+                        ,style={'display': 'flex', 'flex-direction': 'row',"text-align": "center","font-size":30,"width":"80%","margin":"0 auto"}
+                        ),
+                        html.Br(),html.Br(),html.Br(),html.Br()
+                ], 
+    # style for the whole page
+    style={
+
+    # scrollbar
+    "scrollbar-gutter": "stable",
+    # size of the whole page
+    "margin-top":"-10px","margin-left":"-1%","margin-right":"-1%"})
 
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000'
