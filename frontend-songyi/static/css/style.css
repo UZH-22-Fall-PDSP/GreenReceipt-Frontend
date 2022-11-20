@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Crimson+Text&display=swap');
+
+
+h1 {
+margin:0px;
+font-family: 'Crimson Text', serif;
+font-size: 50px;
+}
+
+h2 {
+font-family: 'Crimson Text', serif;
+font-size: 35px;
+}
+
+h4 {
+margin:0px;
+font-family: 'Crimson Text', serif;
+}
+
+p {
+margin:0px;
+font-family: 'Crimson Text', serif;
+}
+
+.page-title{
+font-family: 'Crimson Text', serif;
+margin:5% 1% 1% 1%;
+padding:1%;
+
+}
+
+.navbar{
+font-family: 'Crimson Text', serif;
+}
+
+.card-title {
+margin:1%;
+font-family: 'Crimson Text', serif;
+font-size: 20px;
+}
+
+.home-description {
+background-image: url('../assets/cooking.jpg');
+background-size: 100% 100%;
+height: 400px;
+
+
+}
+
+.home-button{
+    border-radius: 10px;
+    margin: 10%;
+
+    position: center;
+    line-height: 1.2;
+    width: 98%;
+}
+
+.footer{
+    width: 100%;
+    height: 180px;
+    margin: 0%;
+    padding: 2%;
+    background-color: #F8F6F6;
+    position: relative;
+    bottom: 0px;    
+}
+
+.footer_content{
+
+}
+
+.manual{
+height: 400px;
+padding: 4%;
+text-align: center;
+
+
+}
+
+/*
+background-color: #fff5f5;
+box-shadow: 2px 2px 2px lightgrey;
+*/
