@@ -24,6 +24,7 @@ table_body = [html.Tbody([row1, row2, row3, row4])]
 
 page2_table = dbc.Table(table_header + table_body, bordered=True)
 
+
 # Define the final page layout
 layout = dbc.Container([
     dbc.Row([
@@ -54,11 +55,16 @@ GCP_BACKEND_URL = 'XXX.XXX.XXX.XXX'
      Output('ingrd_sim_graph','figure'),
      Input('ingrd_sim_search', 'n_clicks'),
      State('ingrd_input', 'value'))
+
 def update_simingrdset_result(n_clicks, value):
 
     backendURL = LOCAL_TEST_URL + '/simingrdset'
 
     ingrd_details_fig = px.pie()
+    ingrd_details_fig.update_xaxes(color='white')
+    ingrd_details_fig.update_layout(title_x=0.5, plot_bgcolor='white',title_font_color="white",
+                                   font_color="white")
+
     if (value != None) and (value != ''):
         response = requests.get(url = backendURL,  params={'ingrd': value})
 

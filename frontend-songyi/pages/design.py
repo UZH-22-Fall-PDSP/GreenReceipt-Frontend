@@ -125,5 +125,3 @@ def parsingManualCO2(response_json):
      return totalco2, ingrdData
 
 
-
-
