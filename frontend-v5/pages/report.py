@@ -6,7 +6,12 @@ import requests
 import plotly.express as px
 import pandas as pd
 from dash import html, dcc
-
+import plotly 
+import plotly.express as px
+import plotly.figure_factory as ff
+import numpy as np
+import pandas as pd
+import plotly.graph_objects as go
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000'
 GCP_BACKEND_URL = 'http://34.140.236.234:5000'
@@ -51,6 +56,16 @@ cat_total_fig = px.sunburst(df_final,
                             color_discrete_map=color_map)
 
 
+cat_each_dist = go.Figure()
+
+for cate in cat_ingrd:
+    cat_each_dist.add_trace(go.Violin(x=df_final['category'][df_final['category'] == cate],
+                            y=df_final['co2'][df_final['category'] == cate],
+                            name=cate,
+                            box_visible=True,
+                            meanline_visible=True))
+
+
 layout = dbc.Container([
     dbc.Row([
         html.Center(html.H1("Report")),
@@ -64,6 +79,7 @@ layout = dbc.Container([
         dbc.Col([
             html.H4("This is column 2."), 
             html.P("Here is our report"),
+            dcc.Graph(id='cat_each_dist_graph', figure = cat_each_dist),
         ],style={'padding':'0%'}),
     ],style={'padding':'5%'})
 ])
