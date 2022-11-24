@@ -6,7 +6,6 @@ import requests
 
 app = dash.Dash()
 
-
 app.layout = html.Div([
     html.H1("Simple input example"),
     dcc.Input(
