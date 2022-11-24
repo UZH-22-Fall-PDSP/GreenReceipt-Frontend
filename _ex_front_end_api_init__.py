@@ -1,6 +1,3 @@
-pip install requests
-pip install dash
-
 
 import dash
 from dash import dash, html, dcc
