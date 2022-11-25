@@ -10,7 +10,7 @@ def Figure(orig_input, Data):
              hover_data=["ingredient", "co2"],
              color_discrete_sequence=px.colors.qualitative.Pastel1,
              height=400,
-             labels=dict(co2="CO2 emission (/kg)"))
+             labels=dict(co2="g of CO2 emission"))
     figure.update_xaxes(
     scaleratio = 0.5,
   )

@@ -96,18 +96,6 @@ def update_manualrecipe_result(n_clicks, rows):
                 except ValueError:
                     True
 
-
-    # if n_clicks > 0: 
-    #     recipeName= "manual"
-    #     totalco2 = 15.0
-    #     ingData = pd.DataFrame(data=d)
-
-    #     recipeName_div= html.H4(f"Total co2 emission of {recipeName} is")
-    #     totalco2_div = html.H2(f"{totalco2}")
-    #     bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingData))
-
-
-
     return totalco2_div, bar_figure_div
 
 
@@ -116,9 +104,13 @@ def parsingManualTable(rows):
     ingrd_q = []
     ingrd_u = []
     for r in rows:
-        ingrd.append(r['ingrd'])
-        ingrd_q.append(r['q'])
-        ingrd_u.append(r['u'])
+        if r['ingrd'] != '':
+            ingrd.append(r['ingrd'])
+            if r['q'] != 0:
+                ingrd_q.append(r['q'])
+            else:
+                ingrd_q.append(100)
+            ingrd_u.append(r['u'])
     ingrdSet = {'ingrd':ingrd,'ingrd_q':ingrd_q,'ingrd_u':ingrd_u}
     return ingrdSet
 

@@ -12,7 +12,7 @@ layout = dbc.Container([
     dbc.Row([
             html.Center(className='page-title', 
                         children=[html.H2("URL CO2 Calculator"),
-                                  html.P("Calculate CO2 level (/g) of your recipe simply by entering food.com recipe url"),
+                                  html.P("Calculate g of CO2 emissions of your recipe simply by entering food.com recipe url"),
 
                                   html.Hr()])]),       
     dbc.Row(className='page-contents', 

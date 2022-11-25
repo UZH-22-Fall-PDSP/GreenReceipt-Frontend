@@ -70,17 +70,15 @@ def update_result(n_clicks, value):
 
         if (value != None) and (value != ''):
             response = requests.get(url = backendURL,  params={'ingrd': value})
-            print(response)
             if (response.status_code != 204 and
                 response.headers["content-type"].strip().startswith("application/json")):
                 try:
                     response_json = response.json()
                     ingrdList = parsingSimIngrdList(response_json)
                     org_input = (ingrdList['ingredient'][0], ingrdList['co2'][0])
-                    print(org_input)
-                    orig_text = html.Center([html.H2(f"We found {org_input[0]} for you! It emits {org_input[1]} CO2/g"),html.Br(),html.Br()])
+                    orig_text = html.Center([html.H2(f"We found {org_input[0]} for you!"),
+                                            html.H2(f"It emits {org_input[1]} g of CO2"),html.Br(),html.Br()])
                     Data = pd.DataFrame(data=ingrdList)
-                    print(Data)
                     sim_text = html.H4(f"Here is top 5 similar ingredients of {value}")
                     sim_bar_fig = dcc.Graph(figure=similar_bar.Figure(org_input,Data))
                     #Data = Data.drop([0]).sort_values(by=['co2'],ascending=False)

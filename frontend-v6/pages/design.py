@@ -100,9 +100,13 @@ def parsingManualTable(rows):
     ingrd_q = []
     ingrd_u = []
     for r in rows:
-        ingrd.append(r['ingrd'])
-        ingrd_q.append(r['q'])
-        ingrd_u.append(r['u'])
+        if r['ingrd'] != '':
+            ingrd.append(r['ingrd'])
+            if r['q'] != 0:
+                ingrd_q.append(r['q'])
+            else:
+                ingrd_q.append(100)
+            ingrd_u.append(r['u'])
     ingrdSet = {'ingrd':ingrd,'ingrd_q':ingrd_q,'ingrd_u':ingrd_u}
     return ingrdSet
 

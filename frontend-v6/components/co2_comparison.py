@@ -8,13 +8,13 @@ from dash.dependencies import Input, Output
 ## On average, one eletric cat will emit 200 gram CO2 per mile. 
 
 def Text(totalco2):
-    treeco2day=25000/365
-    co2day = round(totalco2/treeco2day,2)
-    carco2mile = 200
-    co2mile = round(totalco2/carco2mile,2)
+    treeco2day=60 # CO2 absorbability : 60g of CO2 / day by a mature tree
+    tree_co2day = round(totalco2/treeco2day,2)
+    carco2day = 525 # CO2 emissions : 525g of CO2 / day by a typical passenger vehicle
+    car_co2mile = round(totalco2/carco2day,2)
 
-    treeresult = "Your recipe will generate the equivalent of the CO2 taken in by a tree for "+ str(co2day) + " days"
-    carresult = "Your recipe will generate the equivalent of the CO2 produced by an eletric car driving " + str(co2mile)+ " mile."
+    treeresult = f"It takes about {tree_co2day} days to be absorbed by a mature tree."
+    carresult = f"It is equivalent to the CO2 emissions by a car in {car_co2mile} hour(s)."
     
 
     div = dbc.Row(
@@ -22,14 +22,16 @@ def Text(totalco2):
                     html.Center(children=[
                          html.Img(src='static/assets/result-tree.png',style={"height":"25%","width":"25%","text-align":"center"}),
                          html.Br(),html.Br(),
-                         html.Div(html.P(treeresult),style={"width":"90%"}),
+                         html.Div([html.P(treeresult),
+                                  html.P("( CO2 absorbability : 60g of CO2 / day by a mature tree )")],style={"width":"90%"}),
                         ])
                         ,],style={"text-align":"center"},align="center",width=3),
                     dbc.Col([
                     html.Center(children=[
                          html.Img(src='static/assets/result-car.png',style={"height":"25%","width":"25%","text-align":"center"}),
                          html.Br(),html.Br(),
-                         html.Div(html.P(carresult),style={"width":"90%"}),
+                         html.Div([html.P(carresult),
+                                  html.P("( CO2 emissions : 525g of CO2 / day by a typical passenger vehicle )")],style={"width":"90%"}),
                         ])
                         ,],style={"text-align":"center"},align="center",width=3)   
                 ],justify="center",)

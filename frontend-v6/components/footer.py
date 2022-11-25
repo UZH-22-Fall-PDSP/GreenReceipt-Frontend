@@ -10,7 +10,7 @@ about_div = html.Div(className="footer_content",
 
 contact_div = html.Div(className="footer_content", 
                       children = [dbc.Row(html.H4("Contact")),
-                      dbc.Row([html.P("kaden@uzh.ch"),
+                      dbc.Row([html.P("hyeongkyun.kim@uzh.ch"),
                                html.P("songyi.han@uzh.ch"),
                                html.P("yian.gong@uzh.ch"),
                                html.P("mengqi@uzh.ch")

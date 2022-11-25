@@ -58,17 +58,14 @@ def update_result(n_clicks, value):
 
         if (value != None) and (value != ''):
             response = requests.get(url = backendURL,  params={'ingrd': value})
-            print(response)
             if (response.status_code != 204 and
                 response.headers["content-type"].strip().startswith("application/json")):
                 try:
                     response_json = response.json()
                     ingrdList = parsingSimIngrdList(response_json)
                     org_input = (ingrdList['ingredient'][0], ingrdList['co2'][0])
-                    print(org_input)
                     Data = pd.DataFrame(data=ingrdList)
                     Data = Data.drop([0]).sort_values(by=['co2'],ascending=False)
-                    print(Data)
                     sim_bar_fig = dcc.Graph(figure=similar_bar.Figure(org_input,Data))
                     guage1, guage2, guage3, guage4 = similar_guage.Figure(org_input,Data)
 

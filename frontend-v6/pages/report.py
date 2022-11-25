@@ -45,7 +45,7 @@ def createCatIngrdDataFrame(cat_ingrd):
     return df_final
 
 cat_ingrd = ['Vegetables','Fruits','Grains, Beans and Nuts','Meat and Poultry','Fish and Seafood','Dairy Foods']
-color = ['#3cb371','#ffa500','#cd853f','#800000','#4169e1','#ffe4b5']
+color = ['A5ADF3','E2A69E','A1DAC7','C3A9F3','ECC9AE','A4DEF2']
 color_map = {cat:color for cat,color in zip(cat_ingrd,color)}
 
 df_final = createCatIngrdDataFrame(cat_ingrd)
@@ -72,13 +72,13 @@ layout = dbc.Container([
         html.Br(),
         html.Hr(),
         dbc.Col([
-            html.H4("This is column 1."), 
-            html.P("here is our report"),
+            html.H4("Which ingredient category is the most greener? "), 
+            html.P("Check the report of ingredient CO2 charts by each category."),
             dcc.Graph(id='cat_total_ingrd_graph', figure = cat_total_fig),
         ],style={'padding':'0%'}), 
         dbc.Col([
-            html.H4("This is column 2."), 
-            html.P("Here is our report"),
+            html.H4("How are ingredients CO2 level distributed?"), 
+            html.P("Check the report of ingredient CO2 distribution by each category."),
             dcc.Graph(id='cat_each_dist_graph', figure = cat_each_dist),
         ],style={'padding':'0%'}),
     ],style={'padding':'5%'})

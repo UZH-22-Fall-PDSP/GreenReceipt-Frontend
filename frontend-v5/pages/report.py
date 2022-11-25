@@ -45,7 +45,7 @@ def createCatIngrdDataFrame(cat_ingrd):
     return df_final
 
 cat_ingrd = ['Vegetables','Fruits','Grains, Beans and Nuts','Meat and Poultry','Fish and Seafood','Dairy Foods']
-color = ['#3cb371','#ffa500','#cd853f','#800000','#4169e1','#ffe4b5']
+color = ['A5ADF3','E2A69E','A1DAC7','C3A9F3','ECC9AE','A4DEF2']
 color_map = {cat:color for cat,color in zip(cat_ingrd,color)}
 
 df_final = createCatIngrdDataFrame(cat_ingrd)
