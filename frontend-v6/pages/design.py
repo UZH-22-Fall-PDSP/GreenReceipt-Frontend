@@ -86,7 +86,7 @@ def update_manualrecipe_result(n_clicks, rows):
                 try:
                     response_json = response.json()
                     totalco2, ingrdData = parsingManualCO2(response_json)
-
+                    recipeName = "your manual recipe"
                     totalco2_div = co2_sum.Text(recipeName,totalco2)
                     bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingrdData))
                     co2_comp_div = co2_comparison.Text(totalco2)
