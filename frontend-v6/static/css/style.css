@@ -68,11 +68,21 @@ padding: 1% 0% 1% 1;
 margin: 1%;
 }
 
+.total-co2-is{
+display: flex;
+justify-content: flex-start;
+margin: 0% 0% 0% 20%;
+}
+
+.total-co2-is > H4{
+font-size: 25px;
+}
+
 .total-co2{
 display: flex;
 justify-content: center;
 align-items: flex-end;
-margin: 3% 0% 0% 0%;
+margin: 0% 0% 0% 0%;
 }
 
 .total-co2 > div {
@@ -87,7 +97,7 @@ font-weight: 900;
 }
 
 .total-co2 H4 {
-font-size: 20px;
+font-size: 25 px;
 
 }
 .recipe-name {
@@ -106,7 +116,6 @@ display: flex;
 justify-content: center;
 padding: 0%;
 margin: 5% 0% 0% 0%;
-width: 100%;
 }
 
 .co2-result-text
@@ -142,8 +151,12 @@ font-weight: bold;
 display: flex;
 flex-direction: row;
 padding: 1%
-
 }
+
+.sim-result-text{
+padding-bottom: : 5%;
+}
+
 
 .navbar{
 font-family: 'Crimson Text', serif;
@@ -228,7 +241,7 @@ justify-content: flex-start;
 }
 
 .manual{
-height: 400px;
+height: 500px;
 padding: 4%;
 text-align: center;
 }

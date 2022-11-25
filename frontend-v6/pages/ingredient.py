@@ -26,17 +26,17 @@ layout = dbc.Container([
                                         dbc.Col([dbc.Button("Search", id='sim_cal', color="secondary",n_clicks=0)],width=2)])
                               ]),
             dbc.Row([ #result
-                     dbc.Row(id='orig-text', children=[]) ,
-                     dbc.Col([html.P("Here is all alternative green ingredients"),
-                             dbc.Row(id='sim_bar_fig',children=[])],style={'padding':'3%'}),
-                     dbc.Col([html.P("You can reduce CO2 emission"),
+                     dbc.Row(id='orig-text', className='sim-result-text',children=[]) ,
+                     dbc.Col([dbc.Row(id="sim_text", children=[],style={'padding-bottom':'3%'}),
+                             dbc.Row(id='sim_bar_fig',children=[])],style={'padding':'5%'}),
+                     dbc.Col([dbc.Row(id="guage_text", children=[],style={'padding-bottom':'3%'}),
                              dbc.Row([dbc.Col(id='guage_fig1',children=[], ),
                                       dbc.Col(id='guage_fig2',children=[])]),
                              dbc.Row([dbc.Col(id='guage_fig3',children=[]),
-                                      dbc.Col(id='guage_fig4',children=[])])],style={'padding':'3%'}
+                                      dbc.Col(id='guage_fig4',children=[])])],style={'padding':'5%'}
             )
         ])
-    ], style={'margin-right': '5%', 'margin-left': '5%'})
+    ], style={'margin-right': '5%', 'margin-left': '5%', 'margin-bottom':'10%'})
    ])
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000'
@@ -44,7 +44,9 @@ GCP_BACKEND_URL = 'http://34.140.236.234:5000'
 
 @app.callback(
      Output('orig-text','children'),
+     Output('sim_text','children'),
      Output('sim_bar_fig','children'),
+     Output('guage_text','children'),
      Output('guage_fig1','children'),
      Output('guage_fig2','children'),
      Output('guage_fig3','children'),
@@ -54,7 +56,9 @@ GCP_BACKEND_URL = 'http://34.140.236.234:5000'
 )
 def update_result(n_clicks, value):
     orig_text = []
+    sim_text = []
     sim_bar_fig = []
+    guage_text = []
     guage_fig1 = []
     guage_fig2 = []
     guage_fig3 = []
@@ -74,12 +78,16 @@ def update_result(n_clicks, value):
                     ingrdList = parsingSimIngrdList(response_json)
                     org_input = (ingrdList['ingredient'][0], ingrdList['co2'][0])
                     print(org_input)
+                    orig_text = html.Center([html.H2(f"We found {org_input[0]} for you! It emits {org_input[1]} CO2/g"),html.Br(),html.Br()])
                     Data = pd.DataFrame(data=ingrdList)
-                    Data = Data.drop([0]).sort_values(by=['co2'],ascending=False)
                     print(Data)
+                    sim_text = html.H4(f"Here is top 5 similar ingredients of {value}")
                     sim_bar_fig = dcc.Graph(figure=similar_bar.Figure(org_input,Data))
+                    #Data = Data.drop([0]).sort_values(by=['co2'],ascending=False)
+                    Data = Data.drop([0])
                     guage1, guage2, guage3, guage4 = similar_guage.Figure(org_input,Data)
 
+                    guage_text = html.Div([html.H4(f"Here is relative CO2 emission to {org_input[0]}!"),html.H4("Why don't you choose greener one? :)")])
                     guage_fig1 = dcc.Graph(figure=guage1)
                     guage_fig2 = dcc.Graph(figure=guage2)
                     guage_fig3 = dcc.Graph(figure=guage3)
@@ -88,7 +96,7 @@ def update_result(n_clicks, value):
                 except ValueError:
                     True
 
-    return orig_text, sim_bar_fig, guage_fig1, guage_fig2, guage_fig3, guage_fig4
+    return orig_text, sim_text, sim_bar_fig, guage_text, guage_fig1, guage_fig2, guage_fig3, guage_fig4
 
 
 

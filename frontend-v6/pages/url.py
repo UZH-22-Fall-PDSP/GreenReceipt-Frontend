@@ -12,7 +12,7 @@ layout = dbc.Container([
     dbc.Row([
             html.Center(className='page-title', 
                         children=[html.H2("URL CO2 Calculator"),
-                                  html.P("Calculate CO2 level of your recipe simply by entering food.com recipe url"),
+                                  html.P("Calculate CO2 level (/g) of your recipe simply by entering food.com recipe url"),
 
                                   html.Hr()])]),       
     dbc.Row(className='page-contents', 
@@ -30,7 +30,7 @@ layout = dbc.Container([
                 dbc.Row([ #result 
                          dbc.Row(className='co2-result-text', 
                                  children=[ dbc.Row(id='total-co2',children=[])]),                            
-                         dbc.Col(id='co2_bar_fig', className='co2-bar', children=[])],
+                         html.Div(id='co2_bar_fig', className='co2-bar', children=[])],
                          ),
                 dbc.Row(id='co2-comparison',children=[],style={'padding-bottom':'10%'})
             ])

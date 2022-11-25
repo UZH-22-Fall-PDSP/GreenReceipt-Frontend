@@ -12,6 +12,7 @@ def Figure(Data):
              color_discrete_sequence=px.colors.qualitative.Set3,
              orientation='h',
              height=200,
+             width=1000,
              text='co2')
     figure.update_yaxes(visible=False, showticklabels=False)
     figure.update_xaxes(visible=False, showticklabels=False)

@@ -9,9 +9,9 @@ from dash.dependencies import Input, Output
 
 def Text(totalco2):
     treeco2day=25000/365
-    co2day = totalco2/treeco2day
+    co2day = round(totalco2/treeco2day,2)
     carco2mile = 200
-    co2mile = totalco2/carco2mile
+    co2mile = round(totalco2/carco2mile,2)
 
     treeresult = "Your recipe will generate the equivalent of the CO2 taken in by a tree for "+ str(co2day) + " days"
     carresult = "Your recipe will generate the equivalent of the CO2 produced by an eletric car driving " + str(co2mile)+ " mile."
