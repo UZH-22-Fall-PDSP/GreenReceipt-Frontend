@@ -62,7 +62,7 @@ def update_result(n_clicks, value):
                 recipeName, totalco2, ingrdData = parsingRecipeCO2(response_json)
 
                 totalco2_div = co2_sum.Text(recipeName,totalco2)
-                bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingData))
+                bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingrdData))
                 co2_comp_div = co2_comparison.Text(totalco2)
 
             except ValueError:

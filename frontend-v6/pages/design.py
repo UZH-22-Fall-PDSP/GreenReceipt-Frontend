@@ -10,7 +10,7 @@ import requests
 from collections import OrderedDict
 
 
-from components import manual_input, co2_bar
+from components import co2_sum, co2_bar, co2_comparison
 
 
 df = pd.DataFrame(OrderedDict([
