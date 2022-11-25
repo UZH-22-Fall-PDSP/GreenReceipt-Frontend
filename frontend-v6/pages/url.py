@@ -59,7 +59,7 @@ def update_result(n_clicks, value):
             response.headers["content-type"].strip().startswith("application/json")):
             try:
                 response_json = response.json()
-                recipeName, totalco2, ingrdList = parsingRecipeCO2(response_json)
+                recipeName, totalco2, ingrdData = parsingRecipeCO2(response_json)
 
                 totalco2_div = co2_sum.Text(recipeName,totalco2)
                 bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingData))

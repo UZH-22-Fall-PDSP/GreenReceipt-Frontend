@@ -85,10 +85,10 @@ def update_manualrecipe_result(n_clicks, rows):
                 response.headers["content-type"].strip().startswith("application/json")):
                 try:
                     response_json = response.json()
-                    totalco2, ingrdList = parsingManualCO2(response_json)
+                    totalco2, ingrdData = parsingManualCO2(response_json)
 
                     totalco2_div = co2_sum.Text(recipeName,totalco2)
-                    bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingData))
+                    bar_figure_div = dcc.Graph(figure=co2_bar.Figure(ingrdData))
                     co2_comp_div = co2_comparison.Text(totalco2)
                 except ValueError:
                     True
