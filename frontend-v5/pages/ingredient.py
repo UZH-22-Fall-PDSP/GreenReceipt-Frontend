@@ -34,7 +34,7 @@ layout = dbc.Container([
    ])
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000'
-GCP_BACKEND_URL = 'http://34.140.236.234:5000'
+GCP_BACKEND_URL = 'http://34.78.60.82:5000'
 
 @app.callback(
      Output('sim_bar_fig','children'),
