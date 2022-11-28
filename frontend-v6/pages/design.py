@@ -24,13 +24,13 @@ manual_input = dash_table.DataTable(id='manual-recipe-table',
                             data=df.to_dict('records'),
                             columns=[
                                 {'id': 'ingrd', 'name': 'Ingredient'},
-                                {'id': 'q', 'name': 'Quantity', "type": "numeric"},
-                                {'id': 'u', 'name': 'Unit', 'presentation': 'dropdown'},
+                                {'id': 'q', 'name': 'Quantity (g)', "type": "numeric"},
+                                # {'id': 'u', 'name': 'Unit', 'presentation': 'dropdown'},
                             ],
                             editable=True,
-                            dropdown={
-                                'u': {'options': [{'label': i, 'value': i} for i in ['g','kg']], 'clearable' : False}
-                            },
+                            # dropdown={
+                            #     'u': {'options': [{'label': i, 'value': i} for i in ['g','kg']], 'clearable' : False}
+                            # },
                         )
 
 ################################################################
@@ -105,8 +105,8 @@ def parsingManualTable(rows):
             if r['q'] != 0:
                 ingrd_q.append(r['q'])
             else:
-                ingrd_q.append(100)
-            ingrd_u.append(r['u'])
+                ingrd_q.append(1)
+            ingrd_u.append('g')
     ingrdSet = {'ingrd':ingrd,'ingrd_q':ingrd_q,'ingrd_u':ingrd_u}
     return ingrdSet
 

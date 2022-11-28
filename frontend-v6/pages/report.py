@@ -38,7 +38,7 @@ def createCatIngrdDataFrame(cat_ingrd):
             _ = {}
             _['category'] = [c]
             _['ingredient'] = [ingrd['ingredient']]
-            _['co2'] = [ingrd['co2']]
+            _['co2'] = [ingrd['co2']*1000]
             df_cat = pd.concat([df_cat,pd.DataFrame(_)])
         df_final = pd.concat([df_final,df_cat.sort_values('co2',ascending=False)[:10]])
     return df_final
