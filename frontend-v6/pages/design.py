@@ -24,7 +24,7 @@ manual_input = dash_table.DataTable(id='manual-recipe-table',
                             data=df.to_dict('records'),
                             columns=[
                                 {'id': 'ingrd', 'name': 'Ingredient'},
-                                {'id': 'q', 'name': 'Quantity (g)', "type": "numeric"},
+                                {'id': 'q', 'name': 'Quantity (g, default = 1g)', "type": "numeric"},
                                 # {'id': 'u', 'name': 'Unit', 'presentation': 'dropdown'},
                             ],
                             editable=True,
@@ -40,7 +40,8 @@ layout = dbc.Container([
     dbc.Row([
         html.Center(className='page-title', 
                     children=[html.H2("Manual CO2 Calculator"),
-                              html.P("Calculate CO2 level of your recipe by entering ingredient and quantity manually"),
+                              html.P("Calculate g of CO2 emissions / kg of your meal"),
+                              html.P("by entering ingredient and quantity manually"),
                               html.Hr()]),
         
     dbc.Row(className='page-contents', 

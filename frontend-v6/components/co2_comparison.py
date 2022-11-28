@@ -10,7 +10,7 @@ from dash.dependencies import Input, Output
 def Text(totalco2):
     treeco2day=60 # CO2 absorbability : 60g of CO2 / day by a mature tree
     tree_co2day = round(totalco2/treeco2day,2)
-    carco2day = 525 # CO2 emissions : 525g of CO2 / day by a typical passenger vehicle
+    carco2day = 525 # CO2 emissions : 525g of CO2 / hour by a typical passenger vehicle
     car_co2mile = round(totalco2/carco2day,2)
 
     treeresult = f"It takes about {tree_co2day} days to be absorbed by a mature tree."
@@ -31,7 +31,7 @@ def Text(totalco2):
                          html.Img(src='static/assets/result-car.png',style={"height":"25%","width":"25%","text-align":"center"}),
                          html.Br(),html.Br(),
                          html.Div([html.P(carresult),
-                                  html.P("( CO2 emissions : 525g of CO2 / day by a typical passenger vehicle )")],style={"width":"90%"}),
+                                  html.P("( CO2 emissions : 525g of CO2 / hour by a typical passenger vehicle )")],style={"width":"90%"}),
                         ])
                         ,],style={"text-align":"center"},align="center",width=3)   
                 ],justify="center",)

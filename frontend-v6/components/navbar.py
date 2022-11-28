@@ -9,10 +9,10 @@ def Navbar():
     layout = html.Div([
         dbc.NavbarSimple(className="navbar",
             children=[
-                dbc.NavItem(dbc.NavLink("URL", href="/url")),
-                dbc.NavItem(dbc.NavLink("Design", href="/design")),
-                dbc.NavItem(dbc.NavLink("Ingredient", href="/ingredient")),
-                dbc.NavItem(dbc.NavLink("Report", href="/report")),
+                dbc.NavItem(dbc.NavLink("Recipe Calculator", href="/url")),
+                dbc.NavItem(dbc.NavLink("Manual Calculator", href="/design")),
+                dbc.NavItem(dbc.NavLink("Find Greener Ingredient", href="/ingredient")),
+                dbc.NavItem(dbc.NavLink("Ingredient Report", href="/report")),
             ] ,
             brand="🍴🌿 Green Recipe ",
             brand_href="/",

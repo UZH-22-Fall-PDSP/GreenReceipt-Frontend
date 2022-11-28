@@ -77,7 +77,7 @@ def update_result(n_clicks, value):
                     ingrdList = parsingSimIngrdList(response_json)
                     org_input = (ingrdList['ingredient'][0], ingrdList['co2'][0])
                     orig_text = html.Center([html.H2(f"We found {org_input[0]} for you!"),
-                                            html.H2(f"It emits {org_input[1]} g of CO2"),html.Br(),html.Br()])
+                                            html.H2(f"It emits {org_input[1]} g of CO2 / kg of product"),html.Br(),html.Br()])
                     Data = pd.DataFrame(data=ingrdList)
                     sim_text = html.H4(f"Here is top 5 similar ingredients of {value}")
                     sim_bar_fig = dcc.Graph(figure=similar_bar.Figure(org_input,Data))
