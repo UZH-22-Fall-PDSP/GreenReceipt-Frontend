@@ -101,7 +101,7 @@ def parsingManualTable(rows):
     ingrd_q = []
     ingrd_u = []
     for r in rows:
-        if r['ingrd'] != '':
+        if r['ingrd'] != '' or r['ingrd'] != None:
             ingrd.append(r['ingrd'])
             if r['q'] != 0:
                 ingrd_q.append(r['q'])
@@ -109,6 +109,7 @@ def parsingManualTable(rows):
                 ingrd_q.append(1)
             ingrd_u.append('g')
     ingrdSet = {'ingrd':ingrd,'ingrd_q':ingrd_q,'ingrd_u':ingrd_u}
+    print(ingrdSet)
     return ingrdSet
 
 def parsingManualCO2(response_json):
