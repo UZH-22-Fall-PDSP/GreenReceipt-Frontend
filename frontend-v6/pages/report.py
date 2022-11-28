@@ -36,12 +36,11 @@ def createCatIngrdDataFrame(cat_ingrd):
         df_cat = pd.DataFrame(columns = ['category','ingredient','co2'])
         for ingrd in data:
             _ = {}
-            _['category'] = c
-            _['ingredient'] = ingrd['ingredient']
-            _['co2'] = ingrd['co2']
-            df_cat = df_cat.append(_,ignore_index=True)
-        df_final = df_final.append(df_cat.sort_values('co2',ascending=False)[:10],ignore_index=True)
-  
+            _['category'] = [c]
+            _['ingredient'] = [ingrd['ingredient']]
+            _['co2'] = [ingrd['co2']]
+            df_cat = pd.concat([df_cat,pd.DataFrame(_)])
+        df_final = pd.concat([df_final,df_cat.sort_values('co2',ascending=False)[:10]])
     return df_final
 
 cat_ingrd = ['Vegetables','Fruits','Grains, Beans and Nuts','Meat and Poultry','Fish and Seafood','Dairy Foods']
