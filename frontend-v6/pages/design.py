@@ -101,7 +101,7 @@ def parsingManualTable(rows):
     ingrd_q = []
     ingrd_u = []
     for r in rows:
-        if r['ingrd'] != '' or r['ingrd'] != None:
+        if r['ingrd'] != '' and r['ingrd'] != None:
             ingrd.append(r['ingrd'])
             if r['q'] != 0:
                 ingrd_q.append(r['q'])
