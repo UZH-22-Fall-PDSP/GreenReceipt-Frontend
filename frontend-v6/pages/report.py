@@ -68,7 +68,9 @@ for cate in cat_ingrd:
 
 layout = dbc.Container([
     dbc.Row([
-        html.Center(html.H1("Report")),
+        html.Center(className='page-title', 
+                    children=[html.H2("Ingredient CO2 Report"),
+                                html.P("Look into details of ingredient co2 level")]),     
         html.Br(),
         html.Hr(),
         dbc.Col([

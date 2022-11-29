@@ -11,7 +11,7 @@ from components import co2_sum, co2_bar, co2_comparison
 layout = dbc.Container([
     dbc.Row([
             html.Center(className='page-title', 
-                        children=[html.H2("URL CO2 Calculator"),
+                        children=[html.H2("Recipe CO2 Calculator"),
                                   html.P("Calculate kg of co2e emissions / kg of your meal"),
                                   html.P("simply by entering food.com recipe url"),
                                   html.Hr()])]),       
