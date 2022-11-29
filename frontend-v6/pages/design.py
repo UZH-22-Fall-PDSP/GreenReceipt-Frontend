@@ -40,7 +40,7 @@ layout = dbc.Container([
     dbc.Row([
         html.Center(className='page-title', 
                     children=[html.H2("Manual CO2 Calculator"),
-                              html.P("Calculate g of CO2 emissions / kg of your meal"),
+                              html.P("Calculate kg of co2e emissions / kg of your meal"),
                               html.P("by entering ingredient and quantity manually"),
                               html.Hr()]),
         
@@ -109,17 +109,19 @@ def parsingManualTable(rows):
                 ingrd_q.append(1)
             ingrd_u.append('g')
     ingrdSet = {'ingrd':ingrd,'ingrd_q':ingrd_q,'ingrd_u':ingrd_u}
-    print(ingrdSet)
+    # print(ingrdSet)
     return ingrdSet
 
 def parsingManualCO2(response_json):
-     totalco2 = round(response_json['totalCO2']*1000,2)
+    #  totalco2 = round(response_json['totalCO2']*1000,2)
+     totalco2 = round(response_json['totalCO2'],4)
      ingrdList = response_json['ingrdCO2List']
      ingrd = []
      co2 = []
      for i in ingrdList:
           ingrd.append(i['ingredient'])
-          co2.append(round(i['co2']*1000,2))
+        #   co2.append(round(i['co2']*1000,2))
+          co2.append(round(i['co2'],4))
      ingrdData = pd.DataFrame(data={'recipe': 'manual','ingredients':ingrd,'co2':co2})
      ingrdData = ingrdData.sort_values(by=['co2'], ascending = False)
      return totalco2, ingrdData

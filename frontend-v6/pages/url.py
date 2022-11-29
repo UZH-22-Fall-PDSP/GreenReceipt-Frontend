@@ -12,7 +12,7 @@ layout = dbc.Container([
     dbc.Row([
             html.Center(className='page-title', 
                         children=[html.H2("URL CO2 Calculator"),
-                                  html.P("Calculate g of CO2 emissions / kg of your meal"),
+                                  html.P("Calculate kg of co2e emissions / kg of your meal"),
                                   html.P("simply by entering food.com recipe url"),
                                   html.Hr()])]),       
     dbc.Row(className='page-contents', 
@@ -83,13 +83,15 @@ def checkValidURL(url):
 
 def parsingRecipeCO2(response_json):
      recipeName = response_json['recipeName']
-     totalco2 = round(response_json['totalCO2']*1000,2)
+    #  totalco2 = round(response_json['totalCO2']*1000,2)
+     totalco2 = round(response_json['totalCO2'],4)
      ingrdList = response_json['ingrdCO2List']
      ingrd = []
      co2 = []
      for i in ingrdList:
           ingrd.append(i['ingredient'])
-          co2.append(round(i['co2']*1000,2))
+        #   co2.append(round(i['co2']*1000,2))
+          co2.append(round(i['co2'],4))
      ingrdData = pd.DataFrame(data={'recipe': recipeName,'ingredients':ingrd,'co2':co2})
      ingrdData = ingrdData.sort_values(by=['co2'], ascending = False)
      return recipeName, totalco2, ingrdData
