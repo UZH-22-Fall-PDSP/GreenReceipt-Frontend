@@ -13,7 +13,7 @@ contact_div = html.Div(className="footer_content",
                       dbc.Row([html.P("hyeongkyun.kim@uzh.ch"),
                                html.P("songyi.han@uzh.ch"),
                                html.P("yian.gong@uzh.ch"),
-                               html.P("mengqi@uzh.ch")
+                               html.P("mengqi.zhao@uzh.ch")
                                 ])],
     )
 
