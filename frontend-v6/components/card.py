@@ -29,7 +29,7 @@ manual_card = dbc.Card(
 ing_card = dbc.Card(
     dbc.CardBody(
         [
-            html.H5("Find Green Ingredient", className="card-title"),
+            html.H5("Find Greener Ingredient", className="card-title"),
             DashIconify(icon="mdi:green-circle-outline",style={"color": "#9ce236","width":"70","height":"85",'margin':'10px'},width=60),
             html.P("Enter your favorite ingredient, then you will find similar and greener ingredients !"),
         ]
@@ -39,7 +39,7 @@ ing_card = dbc.Card(
 report_card = dbc.Card(
     dbc.CardBody(
         [
-            html.H5("Ingredients Categorical Report", className="card-title"),
+            html.H5("Ingredient Report", className="card-title"),
             DashIconify(icon="mdi:report-areaspline",style={"color": "#9ce236","width":"70","height":"80",'margin':'12px'},width=60),
             html.P("Want to learn more about CO2 level of ingredients by category? Check out our report"),
         ]

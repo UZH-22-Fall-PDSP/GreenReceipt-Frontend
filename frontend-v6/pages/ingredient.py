@@ -14,8 +14,8 @@ layout = dbc.Container([
      dbc.Row([
             html.Center(className='page-title', 
                         children=[
-                            html.H2("Find alternative ingredient"),
-                            html.P("you can find more green ingredient which can reduce CO2 emission"),
+                            html.H2("Find greener ingredient"),
+                            html.P("you can find greener ingredient which can reduce CO2 emission"),
                             html.Hr()])
             ]),
     dbc.Row(className='page-contents',
