@@ -14,7 +14,7 @@ import pandas as pd
 import plotly.graph_objects as go
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000'
-GCP_BACKEND_URL = 'http://34.78.60.82:5000'
+GCP_BACKEND_URL = 'http://35.228.5.65:5000'
 
 def getCatIngrdList(category):
     backendURL = GCP_BACKEND_URL + '/ingrdcat'

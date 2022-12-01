@@ -40,7 +40,7 @@ layout = dbc.Container([
    ])
 
 LOCAL_TEST_URL = 'http://127.0.0.1:5000'
-GCP_BACKEND_URL = 'http://34.78.60.82:5000'
+GCP_BACKEND_URL = 'http://35.228.5.65:5000'
 
 @app.callback(
      Output('orig-text','children'),
